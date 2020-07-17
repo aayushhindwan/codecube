@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const { Schema } = require('mongoose');
+
 var questionSchema=new Schema({
 QuestionID:{
         Type:String
