@@ -22,8 +22,6 @@ answerScheme=new mongoose.Schema(
         Type:String
     },
 
-
-
     }
 );
 export default mongoose.model('answer',answerScheme);

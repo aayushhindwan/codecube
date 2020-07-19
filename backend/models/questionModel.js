@@ -1,20 +1,30 @@
 const mongoose=require('mongoose');
 
-var questionSchema=new Schema({
+var questionSchema=new mongoose.Schema({
 QuestionID:{
-        Type:String
+        type:String,
+        required:false
     },
 QuestionTitle:{
-    Type:String
+    type:String,
+    required:true
+
 },
 QuestionBody:{
-    Type:String
+    type:String,
+    required:true
+},
+QuestionTags:{
+    type:String,
+    required:true
 },
 UpVote:{
-    Type:Number
+    type:Number,
+    required:true
 },
 DownVote:{
-    Type:Number
+    type:Number,
+    required:true
 }
 });
-export default mongoose.model("question",questionSchema);
+module.exports= mongoose.model("question",questionSchema);
