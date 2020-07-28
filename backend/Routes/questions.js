@@ -1,23 +1,49 @@
 
 const express=require('express');
 const router=express.Router();
-router.get('/aayu',function(req,res){
-res.send("HEo"+req.session.email);
+const mongoose=require('mongoose');
+const questionModel= require('../models/questionModel');
+
+
+function top(q,x)
+{
+q.sort(function(a,b){
+if(a["Upvote"]-a["DownVote"]>b["Upvote"]-b["DownVote"])
+ return 1;
+ else if((a["Upvote"]-a["DownVote"]<b["Upvote"]-b["DownVote"]))
+ return -1;
+ else 
+ return 0;
+});
+top_x=[];
+for(i=0;i<x;i++)
+{
+ top_x.push(q[i]);
+}
+return top_x;
+
+}
+router.get('/top:v',async function(req,res){
+    
+var q=await questionModel.find();
+tp10=top(q,req.params.v);
+res.send(tp10);
+    
 });
 
 
 
-const mongoose=require('mongoose');
-const questionModel= require('../models/questionModel');
+
 router.get('/aaytu',function(req,res){
-    res.send("HELLo");
+    res.send("HELLo"+x);
     });
   
-
+var x=9;
     
 router.post('/postQuestion',function(req,res){
     console.log(req.body);
     console.log("hiii");
+    x=78;
    var q=new questionModel({
     QuestionBody:req.body.QuestionBody,
     QuestionTitle:req.body.QuestionTitle,
@@ -27,26 +53,9 @@ router.post('/postQuestion',function(req,res){
     QuestionTags:req.body.QuestionTags,});
    console.log(q);
 
-questionModel.insertMany([q],function(err){
-if(err)
-{
-    console.log("errorsending");
-    res.json({
-        "msg":"There is error"+err,
-        "res":0,
-    });
-}
-else{
-    console.log("sending");
-    res.json({
-        "msg":"Question added Succesfully",
-        "res":0,
-    });
-    console.log("sent");
-}
-
+const atlasres= q.save();
+res.send("HELLo"+atlasres);
 });
 
-res.send("hello ji");
-});
+console.log("hiiiii"+x);
 module.exports=router;
