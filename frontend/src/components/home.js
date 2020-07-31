@@ -18,7 +18,7 @@ export default class home extends Component {
                        <div className="authorId">
                             <img src="https://homepages.cae.wisc.edu/~ece533/images/goldhill.png" alt="no-img" />
                             <div className="userName"> 
-                                <div>shivam singh</div>
+                                <div className="name">shivam singh</div>
                                 <div className="postedOn">postedOn. 19 July</div>
                             </div>
                         </div>                            

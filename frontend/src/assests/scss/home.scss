@@ -26,6 +26,7 @@
              margin-left: 2%;
              display: flex;
              flex-direction: row;
+             background-color: orange;
              .userName{
                  display: flex;
                  flex-direction: row;
@@ -73,15 +74,18 @@
     }
 }
 
-// // / Small devices (landscape phones, 576px and up)
-@media (max-width: 576px) { 
-    .authorId img{
-         width: 100px;
-    }
- }
+$breakpoint-tablet: 610px;
 
-// // Medium devices (tablets, 768px and up)
-//  @media (min-width: 768px) {  }
+// // / Small devices (landscape phones, 576px and up)
+@media (max-width: $breakpoint-tablet) { 
+  .main_div{
+      margin-left: 0%;
+      width: 100%;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+//  /
 
 // // Large devices (desktops, 992px and up)
 // @media (min-width: 992px) { 

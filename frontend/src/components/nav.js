@@ -1,76 +1,42 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {Navbar,Nav,NavDropdown,Form,} from 'react-bootstrap'
+import '../assests/scss/navBar.css'
+import styled from 'styled-components'
 
+const Styles = styled.div`
+.navbar{
+    color : white;
+     
+.navbar-link, .navbar-brand ,navbar-nav{
+    color : white;
+    font-weight : bolder;
+    font-size: 25px
+}
 
+.nav-link
+{
+    color : white
+}`
 const NavBar = (props) => {
 
     return (
-        <div className={"nav " + ((props.page !== 'home' && props.page !== 'join' && props.page !== 'certificates') ? 'white-nav' : '')}>
+        <Styles>
+     <Navbar bg="dark" expand="lg">
+  <Navbar.Brand href="#home">Coding Cube</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="ml-5 navbar">
+      <Nav.Link href="/home">Home</Nav.Link>
+      <Nav.Link href="/practice">Practice</Nav.Link>
+      <Nav.Link href="#home">Doubts</Nav.Link>
+      <Nav.Link href="#link">Questions</Nav.Link>  
+    </Nav>
+    <Navbar.Brand href="#" className="ml-auto"><Link to="/profile">Ayushdinwan</Link></Navbar.Brand>
+  </Navbar.Collapse>
+</Navbar>
 
-            <Link to={'/'} className={'nav-home ' + (props.page === 'home' ? 'nav-home-hidden' : '')}>
-               CodingCube
-            </Link>
-            <ul>
-            <li id={'nav-about'}>
-                    <Link to={'/'}>
-                      Home
-                    </Link>
-                </li>
-                <li id={'nav-about'}>
-                    <Link to={'/practice'}>
-                       Practice
-                    </Link>
-                </li>
-                <li id={'nav-hall'}>
-                    <Link to={'/doubts'}>
-                        Doubts
-                    </Link>
-                </li>
-                <li id={'nav-hall'}>
-                    <Link to={'/questions'}>
-                        Questions
-                    </Link>
-                </li>
-               
-                <li id={'nav-more'}>
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                    <a>
-                        More
-                    </a>
-                    <div className={'more-list'}>
-                        <div id={'more-certificates'}>
-                            <Link to={'/certi'}>
-                                Certificates
-                            </Link>
-                        </div>
-                        <div id={'more-projects'}>
-                            <a href={'https://github.com/hackslash-nitp'}>
-                                Projects
-                            </a>
-                        </div>
-                        <div id={'more-events'}>
-                            <a href={'https://community.mozilla.org/groups/hackslash/?view=events'}>
-                                Events
-                            </a>
-                        </div>
-                        <div id={'more-hall'}>
-                            <Link to={'/hall'}>
-                                Hall of Fame
-                            </Link>
-                        </div>
-                        <div id={'more-about'}>
-                            <Link to={'/about'}>
-                                About Us
-                            </Link>
-                        </div>
-                    </div>
-                </li>
-               
-            </ul>
-            <Link to={'/userId'} className='nav-userId'>
-               AyushHindwan
-            </Link>
-        </div>
+  </Styles>
     )
 }
 
