@@ -16,7 +16,7 @@ export default class home extends Component {
                         <Doubt_Question/> 
                          
                    </div>
-                  
+
             </div>
         )
     }
