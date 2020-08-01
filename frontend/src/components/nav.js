@@ -29,7 +29,7 @@ const NavBar = (props) => {
     <Nav className="ml-5 navbar">
       <Nav.Link href="/home">Home</Nav.Link>
       <Nav.Link href="/practice">Practice</Nav.Link>
-      <Nav.Link href="#home">Doubts</Nav.Link>
+      <Nav.Link href="/doubts">Doubts</Nav.Link>
       <Nav.Link href="#link">Questions</Nav.Link>  
     </Nav>
     <Navbar.Brand href="#" className="ml-auto"><Link to="/profile">Ayushdinwan</Link></Navbar.Brand>

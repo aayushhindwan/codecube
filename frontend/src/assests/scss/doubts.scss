@@ -3,9 +3,24 @@
     margin-left : 25%;
     margin-top : 2%;
     .announcement{
-        height: 20vh;
+        
         width:100%;
         background-color: white;
+        color : grey;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-style: inherit;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        font-size: 4vw;
+        i{
+            margin-top: 5vh;
+        }
+        div{
+
+           
+            margin-left: 2vw;
+        }
     }
     .posts{
         margin-top: 3%;
@@ -78,21 +93,41 @@ $breakpoint-tablet: 610px;
 // // / Small devices (landscape phones, 576px and up)
 @media (max-width: $breakpoint-tablet) { 
   .main_div{
+      .announcement{
+        height: 13vh;
+        font-size: 7vw;
+        div{
+            margin-top: 4vh;
+        }
+      }
       margin-left: 0%;
       width: 100%;
   }
 }
 
+// @media(max-width : 768px){
+//     .announcement{
+//         height: 6vh;
+//     }
+// }
 // Medium devices (tablets, 768px and up)
 //  /
 
-// // Large devices (desktops, 992px and up)
-// @media (min-width: 992px) { 
-//     .authorId img{
-//         width : 7%
-//    }
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    .announcement{
+        height: 15vh;
+        font-size: 3vw;
+        i{
+            margin-top: 10px;
+        }
+        div{
 
-// }
+            margin-top: 3vh;
+            margin-left: 2vw;
+        }
+    }
+
+}
 
 // Extra large devices (large desktops, 1200px and up)
-// @media (min-width: 1200px) { ... }

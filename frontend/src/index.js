@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom'
 import allReducers from './reducers'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
+import 'font-awesome/css/font-awesome.min.css';
+
+
 
 const store = createStore(allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
