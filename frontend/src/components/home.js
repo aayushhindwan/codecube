@@ -1,15 +1,50 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import '../assests/scss/home.scss'
-import {Button} from 'react-bootstrap'
+import {Button,Modal} from 'react-bootstrap'
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-export default class home extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
+function MyVerticallyCenteredModal(props) {
+    const [answer,changeAnswer] = useState("")
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+             Write your Answer
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+         <CKEditor 
+          editor={ClassicEditor}
+          data = "Write your answer"
+          onChange={(e,editor)=> changeAnswer(editor.getData())}
+         />
+         
+        </Modal.Body>
+        <Modal.Footer>
+            <Button>Submit</Button>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 
-    render() {
+function Home(){
+    const [modalShow, setModalShow] = useState(false);
+
+
         return (
+            <>
+              <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+             />
             <div className="main_div">
                    <div className="announcement">
                          
@@ -35,10 +70,13 @@ export default class home extends Component {
                         This is my Questions are the c languages that is used for reference pointer......
                         </div>
                         <div className="answerBtn">
-                            <Button> Answer </Button>
+                            <Button onClick={() => setModalShow(true)} > Answer </Button>
                         </div>
                    </div>
             </div>
+        </>
         )
-    }
+    
 }
+
+export default Home;

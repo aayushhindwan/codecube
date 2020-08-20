@@ -27,10 +27,10 @@ const NavBar = (props) => {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ml-5 navbar">
-      <Nav.Link href="/home">Home</Nav.Link>
+      <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/practice">Practice</Nav.Link>
       <Nav.Link href="/doubts">Doubts</Nav.Link>
-      <Nav.Link href="#link">Questions</Nav.Link>  
+      <Nav.Link href="/questions">Questions</Nav.Link>  
     </Nav>
     <Navbar.Brand href="#" className="ml-auto"><Link to="/profile">Ayushdinwan</Link></Navbar.Brand>
   </Navbar.Collapse>

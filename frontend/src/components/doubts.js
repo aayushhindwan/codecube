@@ -1,12 +1,45 @@
-import React, { Component } from 'react'
+import React, { useState} from 'react'
 import PropTypes from 'prop-types'
 import '../assests/scss/doubts.scss'
 import {Button,Modal} from 'react-bootstrap'
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+function MyVerticallyCenteredModalForAnswer(props) {
+  const [answer,changeAnswer] = useState("")
 
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+           Write your Answer
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <CKEditor 
+          editor={ClassicEditor}
+          data = "Write your answer"
+          onChange={(e,editor)=> changeAnswer(editor.getData())}
+         />
+         
+        </Modal.Body>
+        <Modal.Footer>
+            <Button>Submit</Button>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
 
 function MyVerticallyCenteredModal(props) {
+  const [answer,changeAnswer] = useState("")
+
     return (
       <Modal
         {...props}
@@ -21,11 +54,15 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Header>
         <Modal.Body>
           <h4>Doubts</h4>
-          <p>
-            This is my doubts and i will solve it 
-          </p>
+          <CKEditor 
+          editor={ClassicEditor}
+          data = "Write your Doubts"
+          onChange={(e,editor)=> changeAnswer(editor.getData())}
+         />
+         
         </Modal.Body>
         <Modal.Footer>
+            <Button>Submit</Button>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
@@ -34,18 +71,23 @@ function MyVerticallyCenteredModal(props) {
 
 function Doubts(){
     const [modalShow, setModalShow] = React.useState(false);
-   
+    const [modalShowAns, setModalShowAns] = React.useState(false);
+
         return (
             <>
             <MyVerticallyCenteredModal
             show={modalShow}
             onHide={() => setModalShow(false)}
           />
+               <MyVerticallyCenteredModalForAnswer
+            show={modalShowAns}
+            onHide={() => setModalShowAns(false)}
+          />
           {/* // main doubts  */}
             <div className="main_div">
                    <div className="announcement" onClick={() => setModalShow(true)}>
                     <i class="fa fa-book" aria-hidden="true"></i>
-                        <div> What is your Question </div>
+                        <div> What is your Doubts </div>
                    </div>
                   
                    <div className="posts">
@@ -70,7 +112,7 @@ function Doubts(){
                         This is my Questions are the c languages that is used for reference pointer......
                         </div>
                         <div className="answerBtn">
-                            <Button> Answer </Button>
+                            <Button onClick={() => setModalShowAns(true)}> Answer </Button>
                         </div>
                    </div>
             </div>
