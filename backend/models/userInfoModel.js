@@ -1,30 +1,39 @@
 const mongoose=require('mongoose');
 var userInfoSchema=new mongoose.Schema({
-FullName:{
+/*FullName:{
     type:String
-},
+},*/
 Email:
 {
-    type:Email
+    type:String,
+    required:true
 },
+Password:
+{
+    type:String,
+    required:true
+},
+
 Branch:
 {
-    type:String
+    type:String,
+    required:false
 },
 GraduationYear:
 {
-    type:String
+    type:String,
+    required:false
 },
 CodeChefProfile:
 {
     type:String,
-    required:False
+    required:false
 },
 CodeForceProfile:
 {
     type:String,
-    required:False
+    required:false
 }
 
 });
-export default mongoose.model("userinfo",userInfoSchema);
+module.exports= mongoose.model("userinfo",userInfoSchema);

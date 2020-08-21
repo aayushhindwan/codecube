@@ -3,9 +3,14 @@ const express=require('express')
 const bodyParser=require('body-parser')
 const session=require('express-session')
 const redis=require('redis')
+const auth=require('./utilities/auth.js')
 const redisStore=require('connect-redis')(session);
 const client  = redis.createClient();
 app=express();
+var cors = require('cors')
+
+app.use(cors()) 
+
 const mongoose=require('mongoose')
 app.use(bodyParser.urlencoded({extented:true}));
 app.use(bodyParser.json());
@@ -33,7 +38,10 @@ mongoose.connect(uri, {
 router=express.Router();
 app.use('/',require('./Routes/homepage'));
 app.use('/question',require('./Routes/questions'));
-
-app.listen(3000,function(){
-  console.log("Server running on port no 3000");
+app.use('/login',require('./Routes/login'));
+app.use('/signup',require('./Routes/signup'));
+app.use('/summary',require('./Routes/summary'));
+app.use('/answer',require('./Routes/doubtanswer'));
+app.listen(3001,function(){
+  console.log("Server running on port no 3001");
 });

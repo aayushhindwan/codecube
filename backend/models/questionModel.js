@@ -18,6 +18,10 @@ QuestionTags:{
     type:String,
     required:true
 },
+QuestionUser:{
+    type:String,
+    required:true
+},
 UpVote:{
     type:Number,
     required:true
@@ -25,6 +29,6 @@ UpVote:{
 DownVote:{
     type:Number,
     required:true
-}
+},
 });
 module.exports= mongoose.model("question",questionSchema);
