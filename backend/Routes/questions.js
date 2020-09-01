@@ -18,6 +18,7 @@ if(a["Upvote"]-a["DownVote"]>b["Upvote"]-b["DownVote"])
 top10=[];
 for(i=0;i<x;i++)
 {
+    if(q[i]!=null)
  top10.push(q[i]);
 }
 return top10;

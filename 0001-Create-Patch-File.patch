@@ -1,0 +1,72 @@
+From 80915fc2c54c74769643a483a5f44c6585d3bacf Mon Sep 17 00:00:00 2001
+From: aayushhindwan <AAYU>
+Date: Tue, 25 Aug 2020 00:11:42 +0530
+Subject: [PATCH] Create Patch File
+
+---
+ .DS_Store   | Bin 10244 -> 8196 bytes
+ compiler.js |  39 ---------------------------------------
+ 2 files changed, 39 deletions(-)
+
+diff --git a/.DS_Store b/.DS_Store
+index 9f5f1a9845b93a3639b12ff0a362ff4405000aa8..390b760250039bf0df42386a47c9fec479eb3806 100644
+GIT binary patch
+delta 106
+zcmZn(XmOBWU|?W$DortDU;r^WfEYvza8E20o2aMA$gweCH$NlCW*z}{=E)^u!ka_I
+v9<m5B1C;=Q1UHay1*zUx_?>w&ze*qnBg71b$?-f>H@_9+VBBmX`JWL0+cgwg
+
+delta 412
+zcmZp1XbF&DU|?W$DortDU{C-uIe-{M3-C-V6q~50$jGxXU^hP_&t@J0c4l90h9ZVk
+zh7^WOhGGU?1~Udd1_K~A^~}jnPRhwo0_g+db|BXK4+cOM0|O3SlYInkDC3aJOfD;c
+zn8>(qvb~@Zr<ka?gs7yrxXk7(L0Lu?Wru`>$xTA;u7Qj}j3JDXj8TlyV7nNY7$G!+
+zER=>)j440{4%;@f2s5*8Y`DlG$P7`fzzw8bL7}j*@H_KlewjcKCP>(5fD{0&FaXh$
+R3uJmHKNVa=edk<c1OQr~LoEOR
+
+diff --git a/compiler.js b/compiler.js
+index b9eb508..e69de29 100644
+--- a/compiler.js
++++ b/compiler.js
+@@ -1,39 +0,0 @@
+-const express = require('express');
+-const request = require('request');
+-const bodyparser=require("body-parser");
+-
+-const app=express();
+-app.use(bodyparser.urlencoded({extended:true}));
+-  app.get('/edit',function(req,res){
+-    res.sendFile(__dirname+'/editor.html');
+-  });
+-
+-  app.post('/code',function(req,res){
+-    console.log("hi");
+-    var code=req.body.code;
+-    var lang=req.body.lang;
+-     console.log(code+" "+lang);
+-    const options = {
+-      script : code,
+-      language: lang,
+-     versionIndex: "0",
+-     clientId: '7d9991cbe222d3646bff319bf80f22f5',
+-     clientSecret: '43af25012171a821666830e737521534872365844c1b8dd4ffe85a9f0420c3d1'
+-  };
+-  
+-  request.post({url: 'https://api.jdoodle.com/execute',json:options},(error, res, body) => {
+-      if (error) {
+-        console.error(error);
+-        return;
+-      }
+-      console.log(`statusCode: ${res.statusCode}`);
+-      console.log(body);
+-    });
+-  });
+-
+-  app.listen(3000,function(err){
+-    if(err)
+-    console.log(err);
+-    else 
+-    console.log("dekh");
+-  });
+\ No newline at end of file
+-- 
+2.20.1 (Apple Git-117)
+
