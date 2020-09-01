@@ -4,9 +4,10 @@ import '../assests/scss/doubts.scss'
 import {Button,Modal} from 'react-bootstrap'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Post_Doubt from './doubt_post.js'
 
 function MyVerticallyCenteredModalForAnswer(props) {
-  const [answer,changeAnswer] = useState("")
+  const [answer,changeAnswer] = useState("");
 
   return (
     <Modal
@@ -21,11 +22,7 @@ function MyVerticallyCenteredModalForAnswer(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <CKEditor 
-          editor={ClassicEditor}
-          data = "Write your answer"
-          onChange={(e,editor)=> changeAnswer(editor.getData())}
-         />
+     <Post_Doubt/>
          
         </Modal.Body>
         <Modal.Footer>
@@ -54,16 +51,11 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Header>
         <Modal.Body>
           <h4>Doubts</h4>
-          <CKEditor 
-          editor={ClassicEditor}
-          data = "Write your Doubts"
-          onChange={(e,editor)=> changeAnswer(editor.getData())}
-         />
-         
+        <Post_Doubt/>
         </Modal.Body>
         <Modal.Footer>
-            <Button>Submit</Button>
-          <Button onClick={props.onHide}>Close</Button>
+            
+          
         </Modal.Footer>
       </Modal>
     );

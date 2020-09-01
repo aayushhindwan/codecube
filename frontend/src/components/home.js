@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React,{ useState } from 'react'
+import {Component} from 'react'
 import PropTypes from 'prop-types'
 import '../assests/scss/home.scss'
 import {Button,Modal} from 'react-bootstrap'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import Doubt from './doubt_comp.js'
+import axios from "axios";
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("")
     return (
@@ -16,7 +18,7 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-             Write your Answer
+             Write your Answer {props.text}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -35,47 +37,42 @@ function MyVerticallyCenteredModal(props) {
     );
   }
 
-function Home(){
-    const [modalShow, setModalShow] = useState(false);
+class Home extends Component
+{
+   
+    state={
+      doubts:[]
+    }
+componentDidMount()
+{
+ axios.get('http://localhost:3001/question/top8')
+      .then(res => {
+         var persons = res.data;
+      
+        this.setState({doubts:persons});
 
+      })
+}
+render()
+{
 
         return (
-            <>
-              <MyVerticallyCenteredModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-             />
-            <div className="main_div">
-                   <div className="announcement">
-                         
-                   </div>
-                   <div className="posts">
-                       <div className="authorId">
-                            <img src="https://homepages.cae.wisc.edu/~ece533/images/goldhill.png" alt="no-img" />
-                            <div className="userName"> 
-                                <div className="name">shivam singh</div>
-                                <div className="postedOn">postedOn. 19 July</div>
-                            </div>
-                        </div>                            
-                        <div className="postQuestions"> 
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        </div> 
-                        <div className="answerPost">
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer......
-                        </div>
-                        <div className="answerBtn">
-                            <Button onClick={() => setModalShow(true)} > Answer </Button>
-                        </div>
-                   </div>
-            </div>
-        </>
-        )
+            <div>
+  { this.state.doubts.map((p)=>{
+    return (
+<Doubt title={p.QuestionTitle} body={p.QuestionBody} />
+    );
+   }
+   )
+ }
+         
+</div>
+
+
+             );
+           }
+
+          
     
 }
 
