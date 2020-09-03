@@ -8,6 +8,7 @@ import Practice from './components/practice'
 import Doubts from './components/doubts'
 import Questions from "./components/questions"
 import Profile from './components/profile'
+import QuestionById from './components/questionById'
 import {useSelector} from 'react-redux'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path='/doubts' component={Doubts}/>
           <Route path='/questions' component={Questions}/>
           <Route path ='/profile' component = {Profile} />
+          <Route path = '/questionById/:id' component = {QuestionById} />
       </Switch>
     </div>
   );

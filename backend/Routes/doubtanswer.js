@@ -16,9 +16,14 @@ console.log(req.params.id);
     */
   p=await answerModel.updateOne(
     {QuestionId  : req.params.id }, 
-    { $push: { Answers: "hindwanji" } }
+    { $push: { Answers: {body:req.body.Body} } }
 );
+
  res.send("answerposted");
 
+});
+router.get('/getanswer/:id',async function(req,res){
+ans= await answerModel.findOne({QuestionId:req.params.id});
+res.send(ans);
 });
 module.exports=router;

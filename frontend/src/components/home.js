@@ -7,6 +7,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Doubt from './doubt_comp.js'
 import axios from "axios";
+import parse from 'html-react-parser';
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("")
     return (
@@ -60,7 +61,7 @@ render()
             <div>
   { this.state.doubts.map((p)=>{
     return (
-<Doubt title={p.QuestionTitle} body={p.QuestionBody} />
+<Doubt title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} />
     );
    }
    )

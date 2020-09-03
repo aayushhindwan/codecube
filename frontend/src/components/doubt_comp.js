@@ -7,6 +7,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import  { Component } from 'react'
 import { Redirect } from 'react-router';
+import {Link} from "react-router-dom";
 export default class Doubt extends Component
 {
 
@@ -22,11 +23,12 @@ return (
                                 <div className="postedOn">postedOn. 19 July</div>
                             </div>
                         </div>                            
-                        <div className="postQuestions"> 
+                      <Link to={"/questionById/"+this.props._id} >   <div className="postQuestions"> 
                    {this.props.title}
                         </div> 
+                        </Link>
                         <div className="answerPost">
-                       {this.props.body}
+                        <div dangerouslySetInnerHTML={ { __html: this.props.body } }></div>
                         </div>
                         <div className="answerBtn">
                             <Button> Answer </Button>

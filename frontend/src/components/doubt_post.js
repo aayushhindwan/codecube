@@ -6,7 +6,8 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import  { Component } from 'react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
-
+import { Redirect } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 export default class Post_Doubt extends Component {
 
 state={
@@ -21,11 +22,14 @@ SubmitDoubt=(event)=>
   const response =  axios.post('http://localhost:3001/question/postQuestion', { "QuestionTitle": this.state.title,
     "QuestionTags":  this.state.tags,
     "QuestionBody": this.state.body,});
-   
+  
  
 this.setState({title: ''});
 this.setState({tags: []});
 this.setState({body:''});
+const history = useHistory();
+history.push("/doubts");
+  
 }
 handleTitleChange=(event)=> {
   console.log("changing");
