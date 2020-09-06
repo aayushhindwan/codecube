@@ -27,8 +27,7 @@ SubmitDoubt=(event)=>
 this.setState({title: ''});
 this.setState({tags: []});
 this.setState({body:''});
-const history = useHistory();
-history.push("/doubts");
+
   
 }
 handleTitleChange=(event)=> {

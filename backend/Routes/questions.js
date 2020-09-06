@@ -24,7 +24,7 @@ for(i=0;i<x;i++)
 return top10;
 
 }
-//router.use(auth);
+router.use(auth);
 router.get('/top:v',async function(req,res){
     
 var q=await questionModel.find();
@@ -59,10 +59,12 @@ router.post('/postQuestion',async function(req,res){
 const atlasres= await q.save();
 var ans= new answerModel({
     QuestionId:atlasres._id,
+    QuestionTitle:req.body.QuestionTitle,
+    QuestionBody:req.body.QuestionBody,
     Answers:[],
 });
 const atlasres_ans= await ans.save();
-res.send("posted");
+res.redirect("/posted");
 });
 
 console.log("hiiiii"+x);

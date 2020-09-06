@@ -2,7 +2,7 @@ const express=require('express');
 const router=express.Router();
 const mongoose=require('mongoose');
 const auth=require('../utilities/auth.js')
-//router.use(auth);
+router.use(auth);
 const answerModel=require('../models/doubtAnswerModel');
 router.get('/aaytu',function(req,res){
     res.send("HELLo");

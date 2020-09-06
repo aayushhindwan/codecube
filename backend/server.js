@@ -3,6 +3,7 @@ const express=require('express')
 const bodyParser=require('body-parser')
 const session=require('express-session')
 const redis=require('redis')
+
 const auth=require('./utilities/auth.js')
 const redisStore=require('connect-redis')(session);
 const client  = redis.createClient();
@@ -10,7 +11,7 @@ app=express();
 var cors = require('cors')
 
 app.use(cors()) 
-
+app.use(express.static('public'));
 const mongoose=require('mongoose')
 app.use(bodyParser.urlencoded({extented:true}));
 app.use(bodyParser.json());
