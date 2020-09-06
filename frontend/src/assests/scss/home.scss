@@ -69,6 +69,20 @@
             margin-left: 2%;
             text-align: left;
             margin-top:2%;
+            display: flex;
+            flex-direction: row;
+            i{
+                font-size:20px;
+                margin-left:10px;
+                color:gray
+            }
+            :hover{
+                color:blue
+            }
+            
+            :focus{
+                color:green
+            }
         }
     }
 }

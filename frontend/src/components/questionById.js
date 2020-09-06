@@ -33,8 +33,11 @@ axios.get("http://localhost:3001/answer/getanswer/"+this.props.match.params.id).
 }
       SubmitAnswer=(event)=>
 {
-
-  const response =  axios.post('http://localhost:3001/answer/postanswer/'+this.props.match.params.id, { Body: this.state.text,});
+   if(this.state.text){
+    const response =  axios.post('http://localhost:3001/answer/postanswer/'+this.props.match.params.id, { Body: this.state.text,});
+   }else{
+     alert("please write the answer")
+   }
    
  
 this.setState({text: ""});
@@ -49,7 +52,11 @@ this.setState({text: ""});
                         <div className="postQuestions"> 
                         This is my Questions are the c languages that is used for reference pointer
                         This is my Questions are the c languages that is used for reference pointer
-                        </div> 
+                        </div>
+                        <div className="description">
+                        This is my Questions are the c languages that is used for reference pointer
+                        This is my Questions are the c languages that is used for reference pointer
+                        </div>
                         <div className="answerPost">
                             Write Your Answer {this.props.match.params.id}
                       <CKEditor 
@@ -60,17 +67,17 @@ this.setState({text: ""});
             this.setState({text:editor.getData()});
           }}
          />
-         <Button onClick={this.SubmitAnswer} >SubmitAnswer</Button>
+         <Button onClick={this.SubmitAnswer} >Submit Answer</Button>
                            
                         </div>
                      
                       <div className="all_answers">
-                      <h2>{this.state.Answer.length} answer</h2><hr />
+                      <h2>{this.state.Answer.length} Answers</h2><hr />
                         {
-                         this.state.Answer.map((a)=>{
+                         this.state.Answer.map((a,i)=>{
                            return(
 
-                            <Answer body={a.body}/>
+                            <Answer body={a.body} indexValue={i+1}/>
                             );
 
                          })

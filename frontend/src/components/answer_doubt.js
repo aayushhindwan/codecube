@@ -15,10 +15,12 @@ export default class questions extends Component {
       }
     
     render() {
+        const {indexValue} = this.props
         return (
             <div className="answer">
                              <div></div>
-                             <div dangerouslySetInnerHTML={ { __html: this.props.body } }></div>
+                <div className="indexValue">{indexValue}.</div>
+         <div dangerouslySetInnerHTML={ { __html: this.props.body } }></div>
                           </div>
            
         )

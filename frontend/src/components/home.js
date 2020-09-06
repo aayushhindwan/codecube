@@ -48,10 +48,8 @@ componentDidMount()
 {
  axios.get('http://localhost:3001/question/top8')
       .then(res => {
-         var persons = res.data;
-      
+         var persons = res.data;    
         this.setState({doubts:persons});
-
       })
 }
 render()

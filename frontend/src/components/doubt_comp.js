@@ -31,7 +31,9 @@ return (
                         <div dangerouslySetInnerHTML={ { __html: this.props.body } }></div>
                         </div>
                         <div className="answerBtn">
-                            <Button> Answer </Button>
+                         <i className="fa fa-thumbs-up" aria-hidden="true"> 34</i>
+                         <i className="fa fa-thumbs-down" aria-hidden="true"> 545</i>
+
                         </div>
                    </div>
         </div>
