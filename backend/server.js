@@ -37,12 +37,7 @@ mongoose.connect(uri, {
 });
 
 router=express.Router();
-app.use('/',require('./Routes/homepage'));
-app.use('/question',require('./Routes/questions'));
-app.use('/login',require('./Routes/login'));
-app.use('/signup',require('./Routes/signup'));
-app.use('/summary',require('./Routes/summary'));
-app.use('/answer',require('./Routes/doubtanswer'));
+
 app.listen(3001,function(){
   console.log("Server is running on port no 3001");
 });
