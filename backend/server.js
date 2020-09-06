@@ -44,5 +44,5 @@ app.use('/signup',require('./Routes/signup'));
 app.use('/summary',require('./Routes/summary'));
 app.use('/answer',require('./Routes/doubtanswer'));
 app.listen(3001,function(){
-  console.log("Server running on port no 3001");
+  console.log("Server is running on port no 3001");
 });

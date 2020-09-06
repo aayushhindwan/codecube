@@ -7,7 +7,7 @@ import  { Component } from 'react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 export default class Post_Doubt extends Component {
 
 state={
@@ -27,7 +27,9 @@ SubmitDoubt=(event)=>
 this.setState({title: ''});
 this.setState({tags: []});
 this.setState({body:''});
-
+// const history = useHistory();
+// history.push("/doubts");
+ return <Redirect to ="/home" />
   
 }
 handleTitleChange=(event)=> {
@@ -43,9 +45,9 @@ render()
 {
   return (
     
-    <div>
+    <div  className="doubts-posts">
     <legend>Title</legend>
-    <input type="text" placeholder="Main gist of your doubt" onChange={this.handleTitleChange} value={this.state.title}/>
+    <input type="text" placeholder="Title of doubts" onChange={this.handleTitleChange} value={this.state.title}/>
     <CKEditor 
           editor={ClassicEditor}
           data = {this.state.body}
@@ -57,7 +59,7 @@ render()
          <legend>Tags</legend>
     <input type="text" placeholder="tags of your doubts" onChange={this.handleTagChange} value={this.state.tags} />
     <br/>
-    <Button onClick={this.SubmitDoubt} >SubmitDoubt</Button>
+    <Button onClick={this.SubmitDoubt} >Submit Doubt</Button>
     </div>     
         
   );
