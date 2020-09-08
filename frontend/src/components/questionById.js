@@ -13,18 +13,23 @@ export default class questions extends Component {
     }
     constructor(props) {
         super(props);
-        this.state = {
-            Answer : [{body:"testing1"},{body:"testing2"},{body:"testing3"}],
-            text: ""
-        }
+        
       }
-componentDidMount()
+   state = {
+        Answer : [{body:"testing1"},{body:"testing2"},{body:"testing3"}],
+        text: "",
+        QuestionBody:"",
+        QuestionTitle:"",
+    }
+async componentDidMount()
 {
 
 axios.get("http://localhost:3001/answer/getanswer/"+this.props.match.params.id).then(res => {
          var m = res.data;
       
         this.setState({Answer:m.Answers});
+        this.setState({QuestionTitle:m.QuestionTitle});
+        this.setState({QuestionBody:m.QuestionBody});
 
       })
 
@@ -50,12 +55,10 @@ this.setState({text: ""});
                 <div className="main_div">  
                    <div className="posts">         
                         <div className="postQuestions"> 
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
+                        {this.state.QuestionTitle}
                         </div>
                         <div className="description">
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
+                        {this.state.QuestionBody}
                         </div>
                         <div className="answerPost">
                             Write Your Answer {this.props.match.params.id}
@@ -72,18 +75,19 @@ this.setState({text: ""});
                         </div>
                      
                       <div className="all_answers">
-                      <h2>{this.state.Answer.length} Answers</h2><hr />
+                     <h2> Answers</h2>
                         {
-                         this.state.Answer.map((a,i)=>{
+                       /*this.stateAnswer.map((a,i)=>{
                            return(
-
+                       <div>
                             <Answer body={a.body} indexValue={i+1}/>
+                            </div>
                             );
 
                          })
                         
                          
-
+*/
 
                         }
 

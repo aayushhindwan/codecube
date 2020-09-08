@@ -42,11 +42,11 @@ class Home extends Component
 {
    
     state={
-      doubts:[]
+      doubts:[{QuestionTitle:"Testing",QuestionBody:"Testing",_id:"00"}]
     }
-componentDidMount()
+async componentDidMount()
 {
- axios.get('http://localhost:3001/question/top8')
+ var q= await axios.get('http://localhost:3001/question/top8')
       .then(res => {
          var persons = res.data;    
         this.setState({doubts:persons});

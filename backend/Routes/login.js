@@ -21,6 +21,7 @@ router.post('/', async function(req,res){
     console.log("hii");
      }
 });
+
 if(x)
 {  //console.log(x);
     req.session.email=e;
@@ -30,5 +31,12 @@ if(x)
     res.status(400).send("email nhi milrix");
 
 });
-
+router.get('/aaytu',function(req,res){
+    res.send("HELLo");
+    });
+ router.get('/', function(req,res){
+     console.log("hii");
+    // res.send("hii");
+    res.sendfile('./testlogin.html');
+});
 module.exports=router;

@@ -6,6 +6,16 @@ QuestionId:
     required:true,
     type:String
 },
+QuestionTitle:
+{
+    required:true,
+    type:String
+},
+QuestionBody:
+{
+    required:true,
+    type:String
+},
 Answers:
 {
     required:false,

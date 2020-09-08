@@ -6,6 +6,6 @@ module.exports =function(req,res,next)
   {next();
   return}
   else
-  return res.send("login kr bro");
+  return res.redirect('http://localhost:3001/login');
     
 }
