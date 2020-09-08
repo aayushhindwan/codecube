@@ -7,8 +7,9 @@ import  { Component } from 'react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { Link, useHistory} from "react-router-dom";
-export default class Post_Doubt extends Component {
+import { Link, useHistory,withRouter} from "react-router-dom";
+
+class Post_Doubt extends Component {
 
 state={
   title:'',
@@ -27,9 +28,8 @@ SubmitDoubt=(event)=>
 this.setState({title: ''});
 this.setState({tags: []});
 this.setState({body:''});
-// const history = useHistory();
-// history.push("/doubts");
- return <Redirect to ="/home" />
+this.props.history.push("/practice")
+ 
   
 }
 handleTitleChange=(event)=> {
@@ -65,3 +65,5 @@ render()
   );
 }
 }
+
+export default  withRouter(Post_Doubt)
