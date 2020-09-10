@@ -1,15 +1,16 @@
 const mongoose=require('mongoose');
 const updownSchema= new mongoose.Schema(
 {
-QuestionID:
+QuestionId:
 {
     required:true,
     type:String,   
 },
-User:
+Users:
 {
     required:false,
-    type:Array,
+    type:[{email:String,Val:Number}],
 },
 
 });
+module.exports =mongoose.model('UP_DOWN_Vote',updownSchema);

@@ -8,13 +8,29 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import  { Component } from 'react'
 import { Redirect } from 'react-router';
 import {Link} from "react-router-dom";
+import axios from 'axios';
 export default class Doubt extends Component
 {
+  state={x:0,y:0}
+
+  handleLike=(event)=>
+  {
+   axios.post('http://192.168.1.7:3001/likes',{id:this.props._id,inc:1}).then(res=>{
+    console.log("liked");
+   });
+   
+   this.setState({x:this.state.x+1});
+  }
+  handleDislike=(event)=>
+  {
+    this.setState({y:this.state.y-1});
+    axios.post('http://192.168.1.7:3001/likes',{id:this.props._id,inc:-1}); 
+  }
 
 render()
 {
 return (
-    <div className="main_div" onClick={{}}>
+    <div className="main_div" >
    <div className="posts">
                        <div className="authorId">
                             <img src="https://homepages.cae.wisc.edu/~ece533/images/goldhill.png" alt="no-img" />
@@ -31,9 +47,9 @@ return (
                         <div dangerouslySetInnerHTML={ { __html: this.props.body } }></div>
                         </div>
                         <div className="answerBtn">
-                         <i className="fa fa-thumbs-up" aria-hidden="true"> 34</i>
-                         <i className="fa fa-thumbs-down" aria-hidden="true"> 545</i>
-
+<i className="fa fa-thumbs-up" onClick={this.handleLike} aria-hidden="true">{this.props.UpVote}</i>
+                         <i className="fa fa-thumbs-down" onClick={this.handleDislike} aria-hidden="true">{this.props.DownVote}</i>
+        <button onClick={this.handleLike} ></button>
                         </div>
                    </div>
         </div>

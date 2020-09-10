@@ -18,7 +18,7 @@ router.post('/', async function(req,res){
      }
      else{
     console.log(obj);
-    console.log("hii");
+    console.log("hii:");
      }
 });
 
@@ -32,11 +32,11 @@ if(x)
 
 });
 router.get('/aaytu',function(req,res){
-    res.send("HELLo");
+    res.send("HELLo",req.session.email);
     });
  router.get('/', function(req,res){
-     console.log("hii");
-    // res.send("hii");
+     console.log("hii"+req.session.email);
+    //res.send("hii");
     res.sendfile('./testlogin.html');
 });
 module.exports=router;

@@ -2,6 +2,7 @@
 module.exports =function(req,res,next)
 {
   ss=req.session;
+  console.log("session email=",ss.email);
   if(ss.email)
   {next();
   return}

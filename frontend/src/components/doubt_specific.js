@@ -13,7 +13,7 @@ export default class Doubt extends Component
   componentDidMount()
   {
 
-axios.get('http://localhost:3001/getanswer/this.props.match.params.id')
+axios.get('http://192.168.1.7:3001/getanswer/this.props.match.params.id')
       .then(res => {
          var d= res.data;
         this.setState({answers:d.Answers});

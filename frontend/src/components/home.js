@@ -42,11 +42,23 @@ class Home extends Component
 {
    
     state={
-      doubts:[{QuestionTitle:"Testing",QuestionBody:"Testing",_id:"00"}]
+      doubts:[{QuestionTitle:"Testing",QuestionBody:"Testing",_id:"00"}],
+      no:5
+    }
+    increaseno=(event)=>{
+      
+      this.setState({no:this.state.no+5});
+      console.log(this.state.no);
+      var q=  axios.get('http://192.168.1.7:3001/question/top'+this.state.no)
+      .then(res => {
+         var persons = res.data;    
+        this.setState({doubts:persons});
+      });
+      
     }
 async componentDidMount()
 {
- var q= await axios.get('http://localhost:3001/question/top8')
+ var q= await axios.get('http://192.168.1.7:3001/question/top'+this.state.no)
       .then(res => {
          var persons = res.data;    
         this.setState({doubts:persons});
@@ -59,12 +71,12 @@ render()
             <div>
   { this.state.doubts.map((p)=>{
     return (
-<Doubt title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} />
+<Doubt title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} />
     );
    }
    )
  }
-         
+    <Button onClick={this.increaseno}>More Doubts</Button>     
 </div>
 
 

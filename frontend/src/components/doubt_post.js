@@ -7,8 +7,9 @@ import  { Component } from 'react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { Link, useHistory} from "react-router-dom";
-export default class Post_Doubt extends Component {
+import { Link, useHistory,withRouter} from "react-router-dom";
+
+class Post_Doubt extends Component {
 
 state={
   title:'',
@@ -17,19 +18,26 @@ state={
 
 }
 
-SubmitDoubt=(event)=>
+ SubmitDoubt=(event)=>
 {
-  const response =  axios.post('http://localhost:3001/question/postQuestion', { "QuestionTitle": this.state.title,
+  var id="";
+  const response =  axios.post('http://192.168.1.7:3001/question/postQuestion', { "QuestionTitle": this.state.title,
     "QuestionTags":  this.state.tags,
-    "QuestionBody": this.state.body,});
-  
+    "QuestionBody": this.state.body,}).then(res => {
+     id=res.data;
+     this.setState({title: ''});
+     this.setState({tags: []});
+     this.setState({body:''});
+     this.props.history.push("/questionById/"+id);
  
-this.setState({title: ''});
-this.setState({tags: []});
-this.setState({body:''});
-// const history = useHistory();
-// history.push("/doubts");
- return <Redirect to ="/home" />
+
+   })
+   
+
+
+
+
+ 
   
 }
 handleTitleChange=(event)=> {
@@ -65,3 +73,5 @@ render()
   );
 }
 }
+
+export default  withRouter(Post_Doubt)
