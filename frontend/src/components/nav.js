@@ -27,7 +27,7 @@ const NavBar = (props) => {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ml-5 navbar">
-      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/home">Home</Nav.Link>
       <Nav.Link href="/practice">Practice</Nav.Link>
       <Nav.Link href="/doubts">Doubts</Nav.Link>
       <Nav.Link href="/questions">Questions</Nav.Link>  
