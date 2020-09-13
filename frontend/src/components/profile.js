@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import {Button,ListGroup,Modal} from 'react-bootstrap'
 import '../assests/scss/profile.scss'
-
-
+import Avatar from 'react-avatar-edit'
+import MyVerticallyCenteredModalProfile from './myVerticallyCenteralModalProfile'
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal
@@ -30,40 +30,20 @@ function MyVerticallyCenteredModal(props) {
 }
 
 
-function MyVerticallyCenteredModalProfile(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Change Profile
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-       <form className="profile-changes" method="POST">
-         <h1>Username</h1>
-        <input type = "text" /> <br /> 
-       </form> 
-       
-      </Modal.Body>
-      <Modal.Footer>
-      <Button type="submit"
-        onClick={props.onHide}
-      >Changes</Button>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
 
+// function  onClose() {
+//     this.setState({preview: null})
+//   }
+  
+//  function onCrop(preview) {
+//     this.setState({preview})
+//   }
 function Profile(){
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowProfile, setModalShowProfile] = React.useState(false);
-
+  const [preview, setpreview] = useState(null)
+  const [name,changeName] = useState("shivam singh")
+  const [image,changeImage] = useState("https://homepages.cae.wisc.edu/~ece533/images/mountain.png" )
         let Component;
    function showComponent(item){
             //  if(item == "Doubts"){return Component = <Doubts />}
@@ -71,6 +51,16 @@ function Profile(){
             //  if(item == "Articles"){return Component = <Articles />}
 
     }
+
+    function onClose() {
+      setpreview(null)
+    }
+    
+    function onCrop(preview) {
+       setpreview(preview)
+    }
+    
+
     return (
    <>
 
@@ -81,17 +71,23 @@ function Profile(){
      <MyVerticallyCenteredModalProfile
       show={modalShowProfile}
       onHide={() => setModalShowProfile(false)}
+      onCrop = {onCrop}
+      onClose = {onClose}
+      changeImage = {changeImage}
+      name = {name}
+      changeName= {changeName}
     />
         <div class="main_profile_div">
           <div className="upper_div">
               <div  className="userProfile"> 
-               <div className="profile_pic"><img src ="https://homepages.cae.wisc.edu/~ece533/images/mountain.png" alt="no_image"/></div> 
-                <div><h2>shivam sigh</h2>
+               <div className="profile_pic"><img src ={image} alt="no_image"/></div> 
+             
+                <div><h2>{name}</h2>
                 <Button
                 onClick={() => setModalShowProfile(true)}
                 >Changes Profile</Button>
                 </div>
-               
+              
                </div>
               <div className="addSkills">
                 <Button onClick={() => setModalShow(true)}>Add Your Skills</Button>
