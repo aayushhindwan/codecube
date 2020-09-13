@@ -1,6 +1,16 @@
 $primayColor  : black;
 
 body{
+    .profile-changes{
+        display:flex;
+        flex-direction: column;
+        
+        input{
+            width: 30vw;
+            margin-bottom: 20px;
+        }
+
+    }
  
     .main_profile_div{
         margin-top:4px;
