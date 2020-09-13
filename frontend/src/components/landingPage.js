@@ -69,7 +69,7 @@ function MyVerticallyCenteredModal(props) {
           style ={{color:"blue"}}
           onClick = {() => {
               props.onHide()
-             
+             props.setModalShow()
           }}
           >Sign in</div>
           </div>
@@ -95,6 +95,7 @@ function LandingPage () {
            <MyVerticallyCenteredModalSignIn
             show={modalShowSignIn}
             onHide={() => setModalShowSignIn(false)}
+            setModalShow = {() => setModalShow(true)}
           />
             <div className = "main-landingPage">
                 <div className="sub-div-landingPage">
