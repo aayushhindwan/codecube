@@ -32,7 +32,8 @@ if(x)
 
 });
 router.get('/aaytu',function(req,res){
-    res.send("HELLo",req.session.email);
+    console.log("came");
+    res.send("HELLo"+req.session.email);
     });
  router.get('/', function(req,res){
      console.log("hii"+req.session.email);

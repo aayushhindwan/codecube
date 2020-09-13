@@ -1,30 +1,44 @@
 const mongoose=require('mongoose');
-const { Binary } = require('mongodb');
-const codingQuestionSchema=new mongoose.Schema(
-{
-QuestionId:
+
+var CodingQuestionSchema=new mongoose.Schema({
+QuestionID:{
+        type:String,
+        required:false
+    },
+QuestionTitle:{
+    type:String,
+    required:true
+},
+QuestionBody:{
+    type:String,
+    required:true
+},
+QuestionTags:{
+    type:Array,
+    required:true
+},
+Editorial:
 {
     type:String,
-    required:false,
+    required:true
 },
-QuestionTitle:
+Comments:
 {
-    type:String,
-    required:false,
+    type:Array,
+    required:true 
 },
-QuestionContent:
-{
-    type:String,
-    required:false,
+UpVote:{
+    type:Number,
+    required:true
 },
-QuestionCode:
+DownVote:{
+    type:Number,
+    required:true
+},
+Flag:
 {
-    language:String,
-    content:Binary
+  type:Number,
+  required:true  
 }
-
-
-}
-
-
-);
+});
+module.exports= mongoose.model("Coding_Questions",CodingQuestionSchema);

@@ -9,7 +9,10 @@ import Doubts from './components/doubts'
 import Questions from "./components/questions"
 import Profile from './components/profile'
 import QuestionById from './components/questionById'
+import LandingPage from './components/landingPage'
 import {useSelector} from 'react-redux'
+import Login from './components/login'
+import Signup from './components/signup'
 
 function App() {
  const store = useSelector(state => state.story.name)
@@ -19,11 +22,14 @@ function App() {
     <div className="App">
       <NavBar />
       <Switch>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/' component={LandingPage}/>
+          <Route exact path='/home' component={Home}/>
           <Route path='/practice' component={Practice}/>
           <Route path='/doubts' component={Doubts}/>
           <Route path='/questions' component={Questions}/>
           <Route path ='/profile' component = {Profile} />
+          <Route path = '/login' component ={Login} />
+          <Route path = '/signup' component = {Signup} />
           <Route path = '/questionById/:id' component = {QuestionById} />
       </Switch>
     </div>

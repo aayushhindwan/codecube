@@ -44,6 +44,12 @@ app.use('/signup',require('./Routes/signup'));
 app.use('/summary',require('./Routes/summary'));
 app.use('/answer',require('./Routes/doubtanswer'));
 app.use('/likes',require('./Routes/votes'));
+app.use('/profile',require('./Routes/profile'));
+app.get('/', function(req,res){
+  console.log("hii"+req.session.email);
+ //res.send("hii");
+ res.sendfile('./testlogin.html');
+});
 app.listen(3001,function(){
   console.log("Server is running on port no 3001");
 });

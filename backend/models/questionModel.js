@@ -14,8 +14,8 @@ QuestionBody:{
     type:String,
     required:true
 },
-QuestionTags:{
-    type:String,
+Tags:{
+    type:Array,
     required:true
 },
 QuestionUser:{

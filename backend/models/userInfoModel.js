@@ -33,6 +33,14 @@ CodeForceProfile:
 {
     type:String,
     required:false
+},
+Interests:
+{
+    type:[{
+        type:String,
+        required:false
+    }],
+    required:false
 }
 
 });

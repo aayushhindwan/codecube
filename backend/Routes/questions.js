@@ -5,7 +5,8 @@ const mongoose=require('mongoose');
 const questionModel= require('../models/questionModel');
 const answerModel= require('../models/doubtAnswerModel');
 const likeModel=require('../models/UpDown.js');
-const auth=require('../utilities/auth.js')
+const auth=require('../utilities/auth.js');
+const { query } = require('express');
 function top(q,x)
 {
 q.sort(function(a,b){
@@ -27,18 +28,26 @@ return top10;
 }
 //router.use(auth);
 router.get('/top:v',async function(req,res){
-    console.log("request came");
+    console.log("request came with tags=",req.query.tag);
+var q={$and:[{Tags:{$in:['aa']}},{Tags:{$in:['bb']}}]};
+
+no=parseInt(req.params.v);
+console.log(no);
 var q=await questionModel.find();
-tp10=top(q,req.params.v);
-res.send(tp10);
-    
+console.log(q);
+//tp10=top(q,req.params.v);
+res.send(q); 
 });
 
 
 
 
 router.get('/aaytu',function(req,res){
-    res.send("HELLo"+x);
+    var q
+    q=questionModel.find({}).then(
+        console.log("ffff"));
+    console.log("hey");
+    res.send("hii");
     });
   
 var x=9;
@@ -53,7 +62,7 @@ router.post('/postQuestion',async function(req,res){
     QuestionUser:req.body.QuestionBody,
     UpVote:10,
     DownVote:0,
-    QuestionTags:req.body.QuestionTags,});
+    Tags:[],});
   
    //console.log(q);
 
