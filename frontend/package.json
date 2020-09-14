@@ -13,6 +13,7 @@
     "html-react-parser": "^0.13.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-avatar-edit": "^0.8.3",
     "react-bootstrap": "^1.3.0",
     "react-component-export-image": "^0.1.7",
     "react-dom": "^16.13.1",

@@ -32,6 +32,13 @@ body{
             
                 display: flex;
                 flex-direction: row;
+
+                i{
+                    position: absolute;
+                    top:40%;
+                    left:20%;
+                    font-size: 40px;;
+                }
                 .profile_pic{
                    
                  
