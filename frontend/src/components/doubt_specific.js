@@ -7,6 +7,8 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import  { Component } from 'react'
 import { Redirect } from 'react-router';
+import domain from '../domain.js'
+import port from '../port.js'
 export default class Doubt extends Component
 {
   state={id:'',answers:[]}

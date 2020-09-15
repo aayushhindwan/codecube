@@ -5,7 +5,7 @@ const { response } = require('express');
 const session = require('express-session');
 flag=0;
 router.post('/', async function(req,res){
-    console.log("aaya"+session.email);
+    console.log("aaya");
     var e=req.body.email;
     var p=req.body.password;
     console.log(e);
@@ -33,10 +33,11 @@ if(x)
 });
 router.get('/aaytu',function(req,res){
     console.log("came");
-    res.send("HELLo"+req.session.email);
+   
+    res.sendfile('./n.html');
     });
  router.get('/', function(req,res){
-     console.log("hii"+req.session.email);
+     console.log("hii");
     //res.send("hii");
     res.sendfile('./testlogin.html');
 });

@@ -7,6 +7,8 @@ import Answer from './answer_doubt.js'
 import {Button,Modal} from 'react-bootstrap'
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import domain from '../domain.js';
+import port from '../port.js';
 export default class questions extends Component {
     static propTypes = {
         prop: PropTypes
@@ -24,7 +26,7 @@ export default class questions extends Component {
 componentDidMount()
 {
 
-axios.get("http://192.168.1.7:3001/answer/getanswer/"+this.props.match.params.id).then(res => {
+axios.get(domain+':'+port+"/answer/getanswer/"+this.props.match.params.id).then(res => {
          var m = res.data;
       
         this.setState({Answer:m.Answers});

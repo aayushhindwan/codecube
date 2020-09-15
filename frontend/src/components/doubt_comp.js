@@ -9,13 +9,15 @@ import  { Component } from 'react'
 import { Redirect } from 'react-router';
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import port from '../port.js';
+import domain from '../domain.js';
 export default class Doubt extends Component
 {
   state={x:0,y:0}
 
   handleLike=(event)=>
   {
-   axios.post('http://192.168.1.7:3001/likes',{id:this.props._id,inc:1}).then(res=>{
+   axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:1}).then(res=>{
     console.log("liked");
    });
    
@@ -24,7 +26,7 @@ export default class Doubt extends Component
   handleDislike=(event)=>
   {
     this.setState({y:this.state.y-1});
-    axios.post('http://192.168.1.7:3001/likes',{id:this.props._id,inc:-1}); 
+    axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:-1}); 
   }
 
 render()

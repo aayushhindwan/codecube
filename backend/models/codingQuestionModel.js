@@ -25,7 +25,7 @@ Editorial:
 Comments:
 {
     type:Array,
-    required:true 
+    required:false 
 },
 UpVote:{
     type:Number,
@@ -39,6 +39,11 @@ Flag:
 {
   type:Number,
   required:true  
+},
+Author:
+{
+    type:String,
+    required:true,
 }
 });
-module.exports= mongoose.model("Coding_Questions",CodingQuestionSchema);
+module.exports= mongoose.model("Coding_Question",CodingQuestionSchema);

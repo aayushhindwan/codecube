@@ -7,9 +7,10 @@ export default class practice extends Component {
     render() {
         return (
             <div>
-                practice
+                practice:
+                Coming Soon
 
-                <Post_Doubt/>
+            
             </div>
         )
     }

@@ -9,7 +9,7 @@
 <body>
 	<div id="aa">
 	</div>
-<form action="http://localhost:3001/login" method="post">
+
 	dsss
 	<div class="g-signin2" data-onsuccess="onSignIn">
 	
@@ -17,10 +17,10 @@
 	
 	<input type="email" name="email">
 	<input type="password" name="password">
-	<button type="submit">submit</button>
+	<button onclick="on" >submit</button>
 <img src="./aa.png" />
 
-</form>
+
 <a href="#" onclick="signOut();">Sign out</a>
 <script>
   function signOut() {
@@ -31,11 +31,8 @@
   }
 </script>
 <script >
-  function onSignIn(googleUser) {
-console.log(googleUser.Cw);
-console.log(googleUser.wc.access_token);
-console.log("hellodd");
-console.log(googleUser.getBasicProfile())
+  function on(googleUser) {
+console.log('ID: ');
 
   var profile = googleUser.getBasicProfile();
   document.getElementById("aa").innerHTML = profile.getName();

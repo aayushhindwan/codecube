@@ -1,13 +1,18 @@
 const express=require('express')
 const router=express.Router();
+var CodingQModel=require('../models/codingQuestionModel');
 router.get('/',function(req,res){
-x={
+x=new CodingQModel({
 QuestionTitle:req.body.QuestionTitle,
 QuestionBody:req.body.QuestionTitle,
 Tags:req.body.Tags,
-Editorial:req.body.Editorial
-
-}
-
+Editorial:req.body.Editorial,
+UpVote:0,
+DownVote:0,
+Author:req.body.email,
+Flag:"not_veified",
+Comments:[],
+});
+x.save();
 
 })

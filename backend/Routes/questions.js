@@ -1,4 +1,3 @@
-
 const express=require('express');
 const router=express.Router();
 const mongoose=require('mongoose');
@@ -6,6 +5,7 @@ const questionModel= require('../models/questionModel');
 const answerModel= require('../models/doubtAnswerModel');
 const likeModel=require('../models/UpDown.js');
 const auth=require('../utilities/auth.js');
+const domain=require('../domain.js')
 const { query } = require('express');
 function top(q,x)
 {
@@ -29,33 +29,29 @@ return top10;
 //router.use(auth);
 router.get('/top:v',async function(req,res){
     console.log("request came with tags=",req.query.tag);
-var q={$and:[{Tags:{$in:['aa']}},{Tags:{$in:['bb']}}]};
+var qq={$and:[{Tags:{$in:['aa']}},{Tags:{$in:['bb']}}]};
 
 no=parseInt(req.params.v);
 console.log(no);
-var q=await questionModel.find();
-console.log(q);
+var q=await questionModel.find().limit(no);
+//console.log(q);
 //tp10=top(q,req.params.v);
 res.send(q); 
 });
 
-
-
-
 router.get('/aaytu',function(req,res){
     var q
     q=questionModel.find({}).then(
-        console.log("ffff"));
+        console.log("ffff",domain));
     console.log("hey");
     res.send("hii");
     });
   
-var x=9;
+
    
 router.post('/postQuestion',async function(req,res){
     console.log(req.body);
     console.log("post request came");
-    x=78;
    var q=new questionModel({
     QuestionBody:req.body.QuestionBody,
     QuestionTitle:req.body.QuestionTitle,
@@ -86,7 +82,5 @@ console.log("Answer model posted");
 console.log(atlasres._id);
 res.status(200).json(atlasres._id);
 });
-
-
-console.log("hiiiii"+x);
+console.log("hiiiii");
 module.exports=router;

@@ -8,6 +8,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Doubt from './doubt_comp.js'
 import axios from "axios";
 import parse from 'html-react-parser';
+import domain from '../domain.js';
+import port from '../port.js';
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("")
     return (
@@ -42,14 +44,14 @@ class Home extends Component
 {
    
     state={
-      doubts:[{QuestionTitle:"Testing",QuestionBody:"Testing",_id:"00"}],
+      doubts:[{QuestionTitle:"TestingQ",QuestionBody:"Testing",_id:"00"}],
       no:5
     }
     increaseno=(event)=>{
       
       this.setState({no:this.state.no+5});
       console.log(this.state.no);
-      var q=  axios.get('http://192.168.1.7:3001/question/top'+this.state.no)
+      var q=  axios.get(domain+':'+port+'/question/top'+this.state.no)
       .then(res => {
          var persons = res.data;    
         this.setState({doubts:persons});
@@ -58,8 +60,9 @@ class Home extends Component
     }
 async componentDidMount()
 {
- var q= await axios.get('http://192.168.1.7:3001/question/top'+this.state.no)
+ var q= await axios.get(domain+':'+port+'/question/top'+this.state.no)
       .then(res => {
+        //console.log(res.data);
          var persons = res.data;    
         this.setState({doubts:persons});
       })
@@ -69,6 +72,7 @@ render()
 
         return (
             <div>
+
   { this.state.doubts.map((p)=>{
     return (
 <Doubt title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} />
