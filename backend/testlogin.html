@@ -33,7 +33,7 @@
 <script >
   function onSignIn(googleUser) {
 console.log(googleUser.Cw);
-console.log(googleUser.wc.access_token);
+console.log(googleUser);
 console.log("hellodd");
 console.log(googleUser.getBasicProfile())
 
@@ -44,7 +44,7 @@ console.log(googleUser.getBasicProfile())
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   
-  console.log(googleUser.getAuthResponse().id_token);console.log("ll");
+  console.log(googleUser.getAuthResponse());console.log("ll");
 }
  document.getElementById("aa").innerHTML = profile.getName();
 </script>

@@ -46,6 +46,7 @@ app.use('/likes',require('./Routes/votes'));
 app.use('/profile',require('./Routes/profile'));
 app.use('/articles',require('./Routes/articles'));
 app.use('/question',require('./Routes/CodingQuestion'));
+app.use('/compiler',require('./Routes/Compilers'));
 app.get('/', function(req,res){
   console.log("hii");
  //res.send("hii");
