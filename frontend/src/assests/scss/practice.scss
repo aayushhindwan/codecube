@@ -1,0 +1,33 @@
+
+.main-practice-container{
+    width: 50%;
+    margin-left : 25%;
+    margin-top : 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+   
+  .sub-details{
+      padding:10px;
+      .toggle-question{
+          justify-content: space-between;
+          text-align: center;
+          height: 50px;
+          display: flex;
+          flex-direction: row;
+          div{
+              justify-content: center;
+              text-align: center;
+              width:50%;
+              border:2px solid black;
+              padding-top:10px;
+          }
+      }
+
+      .details{
+        background-color: lightgrey;
+          padding:10px;
+          text-align: left;
+      }
+  }
+}
