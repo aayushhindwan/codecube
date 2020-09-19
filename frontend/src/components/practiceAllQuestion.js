@@ -33,7 +33,7 @@ export default class practice extends Component {
              <div className="main-all-practice">
                
                  <div className="practice-question">
-              <Link to='/practiceById'> <div className="question-title">Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space </div></Link>
+              <Link to='/practiceById/1'> <div className="question-title">Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space </div></Link>
                    <div className="question-body">This problem is essentially let us to find whether there are several numbers in a set which are able to sum to a specific value (in this problem, the value is sum/2).
 
                     Actually, this is a 0/1 knapsack problem, for each number, we can pick it or not. Let us assume dp[i][j] means whether the specific sum j can be gotten from the first i numbers. If we can pick such a series of numbers from 0-i whose sum is j, dp[i][j] is true, otherwise it is false.

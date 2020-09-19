@@ -27,7 +27,7 @@ function App() {
           <Route exact path='/' component={LandingPage}/>
           <Route exact path='/home' component={Home}/>
           <Route path='/practice' component={PracticeAllQuestion}/>
-          <Route path='/practiceById' component={Practice}/>
+          <Route path='/practiceById/:id' component={Practice}/>
 
           <Route path='/contribute' component={AddQuestion}/>
           <Route path='/doubts' component={Doubts}/>
