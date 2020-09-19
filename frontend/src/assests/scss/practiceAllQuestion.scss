@@ -1,0 +1,50 @@
+.main-all-practice{
+    width: 50%;
+    margin-left : 25%;
+    margin-top : 2%;
+    display: flex;
+    flex-direction: column;
+   
+    .practice-question{
+        padding:10px;
+        background-color: white;
+        margin-left:10px;
+        margin-right:10px;
+        margin-bottom: 20px;
+        margin-top:20px;
+    }
+    .question-title{
+         font-size: larger;
+         font-weight: bolder;
+         justify-content: flex-start;
+         text-align: left;
+    }
+    .question-body{
+        margin-top:20px;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    .tags-container{
+        margin-top:20px;
+        display: flex;
+        flex-direction: row;
+        margin-bottom:20px;
+        div{
+            background-color: lightblue;
+            padding:10px;
+            font-size: 17px;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding-left:20px;
+            padding-right:20px;
+            border-radius:10px;
+            margin-left: 10px;
+            margin-right:20px;
+            &:hover{
+                background-color: blue;
+                text-decoration: underline;
+                color:white;
+            }
+        }
+    }
+}

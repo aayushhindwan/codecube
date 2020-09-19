@@ -1,25 +1,163 @@
-import React, { Component } from 'react'
+import React, { Component ,Fragment} from 'react'
 import PropTypes from 'prop-types'
 import Post_Doubt from './doubt_post.js'
 import '../assests/scss/practice.scss'
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+import 'react-image-crop/lib/ReactCrop.scss';
+import ReactCrop from 'react-image-crop';
+import Dropzone from 'react-dropzone'
+import { Link } from 'react-router-dom';
+
+const imageMaxSize = 1000000000 // bytes
+const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg, image/gif'
+const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {return item.trim()})
 export default class practice extends Component {
  
     constructor(props) {
         super(props);
        
+      this.state = {
+        selected : "question",
+        crop : "",
+        imgSrc : ""
+     }
       }
  
-      state = {
-        selected : "question"
-     }
+
+
+    //  verifyFile = (files) => {
+    //     if (files && files.length > 0){
+    //         const currentFile = files[0]
+    //         const currentFileType = currentFile.type
+    //         const currentFileSize = currentFile.size
+    //         if(currentFileSize > imageMaxSize) {
+    //             alert("This file is not allowed. " + currentFileSize + " bytes is too large")
+    //             return false
+    //         }
+    //         if (!acceptedFileTypesArray.includes(currentFileType)){
+    //             alert("This file is not allowed. Only images are allowed.")
+    //             return false
+    //         }
+    //         return true
+    //     }
+    // }
+     
+    // handleOnDrop(files, rejectedFiles){
+    //     if (rejectedFiles && rejectedFiles.length > 0){
+    //         this.verifyFile(rejectedFiles)
+    //     }
+
+
+    //     if (files && files.length > 0){
+    //          const isVerified = this.verifyFile(files)
+    //          if (isVerified){
+    //              // imageBase64Data 
+    //              const currentFile = files[0]
+    //              const myFileItemReader = new FileReader()
+    //              myFileItemReader.addEventListener("load", ()=>{
+    //                  // console.log(myFileItemReader.result)
+    //                  const myResult = myFileItemReader.result
+    //                  this.setState({
+    //                      imgSrc: myResult,
+    //                     //  imgSrcExt: extractImageFileExtensionFromBase64(myResult)
+    //                  })
+    //              }, false)
+
+    //              myFileItemReader.readAsDataURL(currentFile)
+
+    //          }
+    //     }
+    // }
+
+    componentDidMount(){
+        [].forEach.call(document.getElementsByClassName('tags-input'), function (el) {
+          let hiddenInput = document.createElement('input'),
+              mainInput = document.createElement('input'),
+              tags = [];
+          
+          hiddenInput.setAttribute('type', 'hidden');
+          hiddenInput.setAttribute('name', el.getAttribute('data-name'));
+      
+          mainInput.setAttribute('type', 'text');
+          mainInput.classList.add('main-input');
+          mainInput.addEventListener('input', function () {
+              let enteredTags = mainInput.value.split(' ');
+              if (enteredTags.length > 1) {
+                  enteredTags.forEach(function (t) {
+                      let filteredTag = filterTag(t);
+                      if (filteredTag.length > 0)
+                          addTag(filteredTag);
+                  });
+                  mainInput.value = '';
+              }
+          });
+      
+          mainInput.addEventListener('keydown', function (e) {
+              let keyCode = e.which || e.keyCode;
+              if (keyCode === 8 && mainInput.value.length === 0 && tags.length > 0) {
+                  removeTag(tags.length - 1);
+              }
+          });
+      
+          el.appendChild(mainInput);
+          el.appendChild(hiddenInput);
+      
+          addTag('hello!');
+      
+          function addTag (text) {
+              let tag = {
+                  text: text,
+                  element: document.createElement('span'),
+              };
+      
+              tag.element.classList.add('tag');
+              tag.element.textContent = tag.text;
+      
+              let closeBtn = document.createElement('span');
+              closeBtn.classList.add('close');
+              closeBtn.addEventListener('click', function () {
+                  removeTag(tags.indexOf(tag));
+              });
+              tag.element.appendChild(closeBtn);
+      
+              tags.push(tag);
+      
+              el.insertBefore(tag.element, mainInput);
+      
+              refreshTags();
+          }
+      
+          function removeTag (index) {
+              let tag = tags[index];
+              tags.splice(index, 1);
+              el.removeChild(tag.element);
+              refreshTags();
+          }
+      
+          function refreshTags () {
+              let tagsList = [];
+              tags.forEach(function (t) {
+                  tagsList.push(t.text);
+              });
+              hiddenInput.value = tagsList.join(',');
+          }
+      
+          function filterTag (tag) {
+              return tag.replace(/[^\w -]/g, '').trim().replace(/\W+/g, '-');
+          }
+      });
+      }
+
+
     render() {
         return (
-           <>
+           <Fragment>
            <div>
                <div className="main-practice-container">
                  <div className="practice-title">
+                 Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space
+                 Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space
+                 Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space
                  Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space
                  </div>
                  <div className="sub-details">
@@ -77,11 +215,46 @@ export default class practice extends Component {
                          }
                     
                  </div>
+                <a href ="#"><div>Practice the question </div></a>
+                 <div className="tags-container">
+                       <div>c</div>
+                       <div>java</div>
+                       <div>c++</div>
+                 </div>
+                <div className="comments">
+                    <div>Comments -</div>
+                     <textarea>this is it</textarea>
+                     <div className="previous-commnets">
+                            <div>Comments are also great for debugging HTML, because you can comment out HTML lines of code, one at a time, to search for errors:</div>
+                            <div>Comments are also great for debugging HTML, because you can comment out HTML lines of code, one at a time, to search for errors:</div>
+                            <div>Comments are also great for debugging HTML, because you can comment out HTML lines of code, one at a time, to search for errors:</div>
+                            <div>Comments are also great for debugging HTML, because you can comment out HTML lines of code, one at a time, to search for errors:</div>
 
+                     </div>
+                </div>
+               
                </div>
+               <Link to ="/contribute"><h4>Want to contribute question ! You are most welcome</h4></Link>
+               {/* <img src ={this.state.imgSrc} alt="no iamge" /> */}
            </div>
         
-           </>
+           </Fragment>
         )
     }
 }
+  
+                 {/* <Dropzone onDrop={acceptedFiles => {
+                     console.log(acceptedFiles)
+                     
+                     console.log(acceptedFiles[0].path)
+                     this.setState({imgSrc : acceptedFiles[0].path})
+                 }}>
+                                {({getRootProps, getInputProps}) => (
+                                    <section>
+                                    <div {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        <p>Drag 'n' drop some files here, or click to select files</p>
+                                    </div>
+                                    </section>
+                                )}
+                             </Dropzone> */}
