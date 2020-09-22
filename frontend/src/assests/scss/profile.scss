@@ -24,6 +24,7 @@ body{
                         font-size: 20px;
                         font-weight: bolder;
                         line-height: 15px;
+                        text-transform: capitalize;
                     }
                  }
              }
@@ -44,6 +45,15 @@ body{
                  
                     margin-right: 30px;
                 }
+                .student-details{
+                    margin-top:10px;
+                    justify-content: flex-start;
+                    text-align: left;
+                    font-size:3vh;
+                    font-weight: bolder;
+                    text-transform: capitalize;
+                    font-family:Georgia, 'Times New Roman', Times, serif;
+                }
                 img{
                     width: 13vw;
                     height: 13vw;  
@@ -52,13 +62,7 @@ body{
                     object-fit: cover;
 
                 }
-                h2{
-                    font-size:3vh;
-                    text-transform: uppercase;
-                    font-weight: bolder;
-                    font-family:Georgia, 'Times New Roman', Times, serif;
-                   
-                }
+              
             }
         }
 
@@ -79,7 +83,61 @@ body{
             color: white;
         }
     }
-  
+   
+    legend{
+        font-weight: bold;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+    input{
+       margin-bottom: 5px; 
+    }
+    :root {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .tags-input {
+        border: 1px solid #333;
+        display: inline-block;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        justify-content: flex-start;
+         text-align: left;
+    }
+    
+    .tags-input .tag {
+        font-size: 85%;
+        padding: 0.5em 0.75em;
+        margin: 0.25em 0.1em;
+        display: inline-block;
+        background-color: #ddd;
+        transition: all 0.1s linear;
+        cursor: pointer;
+    }
+    
+    .tags-input .tag:hover {
+        background-color: #3af;
+        color: white;
+    }
+    
+    .tags-input .tag .close::after {
+        content: '×';
+        font-weight: bold;
+        display: inline-block;
+        transform: scale(1.4);
+        margin-left: 0.75em;
+    }
+    
+    .tags-input .tag .close:hover::after {
+        color: red;
+    }
+    
+    .tags-input .main-input {
+        border: 0;
+        outline: 0;
+        padding: 0.5em 0.1em;
+    }
    
 }
 

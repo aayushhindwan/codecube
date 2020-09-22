@@ -1,0 +1,82 @@
+
+.main-practice-container{
+    width: 50%;
+    margin-left : 25%;
+    margin-top : 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+   .practice-title{
+       padding:10px;
+       font-size: large;
+       font-weight: bolder;
+       text-align: left;
+
+   }
+  .sub-details{
+      padding:10px;
+      .toggle-question{
+          justify-content: space-between;
+          text-align: center;
+          height: 50px;
+          display: flex;
+          flex-direction: row;
+          div{
+              justify-content: center;
+              text-align: center;
+              width:50%;
+              border:2px solid black;
+              padding-top:10px;
+          }
+      }
+
+      .details{
+        background-color: lightgrey;
+          padding:10px;
+          text-align: left;
+      }
+
+
+   
+  }
+.tags-container{
+    margin-top:20px;
+    display: flex;
+    flex-direction: row;
+    div{
+        background-color: lightblue;
+        padding:10px;
+        padding-left:20px;
+        padding-right:20px;
+        border-radius:10px;
+        margin-left: 10px;
+        margin-right:20px;
+    }
+}
+.comments{
+    font-size: 20px;
+    font-weight: bolder;
+    margin-left:10px;
+    margin-top:20px;
+    justify-content: left;
+    text-align: left;
+    textarea{
+        width: 50%;
+    }
+    .previous-commnets{
+        margin-top:20px;
+        
+        margin-right:10px;
+       
+        font-size: 16px;
+        font-weight:none;
+
+        div{
+            background-color: #F6F6F6;
+            padding:20px;
+            margin-bottom:10px;
+            
+        }
+    }
+}
+}

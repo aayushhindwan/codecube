@@ -8,9 +8,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import  { Component } from 'react'
 import { Redirect } from 'react-router';
 import {Link} from "react-router-dom";
-import axios from 'axios';
-import port from '../port.js';
-import domain from '../domain.js';
 export default class Doubt extends Component
 {
   state={x:0,y:0}

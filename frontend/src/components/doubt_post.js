@@ -8,8 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { Link, useHistory,withRouter} from "react-router-dom";
-import domain from '../domain.js'
-import port from '../port.js'
+
 class Post_Doubt extends Component {
 
 state={
@@ -19,22 +18,17 @@ state={
 
 }
 
- SubmitDoubt=(event)=>
-{ console.log(this.state.tags);
-  var id="";
-  const response =  axios.post(domain+':'+port+'/question/postQuestion', { "QuestionTitle": this.state.title,
+SubmitDoubt=(event)=>
+{
+  const response =  axios.post('http://localhost:3001/question/postQuestion', { "QuestionTitle": this.state.title,
     "QuestionTags":  this.state.tags,
-    "QuestionBody": this.state.body,}).then(res => {
-     id=res.data;
-    
-     this.setState({title: ''});
-     this.setState({tags: []});
-     this.setState({body:''});
-     this.props.history.push("/questionById/"+id);
+    "QuestionBody": this.state.body,});
+  
  
-
-   })
-   
+this.setState({title: ''});
+this.setState({tags: []});
+this.setState({body:''});
+this.props.history.push("/practice")
  
   
 }

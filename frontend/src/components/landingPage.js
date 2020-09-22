@@ -19,7 +19,7 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-             Sign-up with the following detail 
+             Sign-up with the following detail
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

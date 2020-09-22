@@ -29,11 +29,9 @@ return top10;
 //router.use(auth);
 router.get('/top:v',async function(req,res){
     console.log("request came with tags=",req.query.tag);
-var qq={$and:[{Tags:{$in:['aa']}},{Tags:{$in:['bb']}}]};
-
 no=parseInt(req.params.v);
 console.log(no);
-/*var q=await questionModel.find().sort().limit(no);*/
+var q=await questionModel.find().sort().limit(no);
 //console.log(q);
 //tp10=top(q,req.params.v);
 res.send(q); 
@@ -46,10 +44,7 @@ router.get('/aaytu',async function(req,res){
     console.log("hey");
     xx++;
     res.send("dffg"+xx);
-    });
-  
-
-   
+    }); 
 router.post('/postQuestion',async function(req,res){
     console.log(req.body);
     console.log("post request came");
