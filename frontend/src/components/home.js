@@ -75,7 +75,7 @@ render()
 
   { this.state.doubts.map((p)=>{
     return (
-<Doubt title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} />
+<Doubt title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt}/>
     );
    }
    )

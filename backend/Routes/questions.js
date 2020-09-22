@@ -33,18 +33,19 @@ var qq={$and:[{Tags:{$in:['aa']}},{Tags:{$in:['bb']}}]};
 
 no=parseInt(req.params.v);
 console.log(no);
-var q=await questionModel.find().limit(no);
+/*var q=await questionModel.find().sort().limit(no);*/
 //console.log(q);
 //tp10=top(q,req.params.v);
 res.send(q); 
 });
-
-router.get('/aaytu',function(req,res){
+var xx=parseInt(8);
+router.get('/aaytu',async function(req,res){
     var q
-    q=questionModel.find({}).then(
-        console.log("ffff",domain));
+   /* q=await questionModel.find({}).then(
+        console.log("ffff",domain));*/
     console.log("hey");
-    res.send("hii");
+    xx++;
+    res.send("dffg"+xx);
     });
   
 

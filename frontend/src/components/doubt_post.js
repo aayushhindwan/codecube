@@ -20,12 +20,13 @@ state={
 }
 
  SubmitDoubt=(event)=>
-{
+{ console.log(this.state.tags);
   var id="";
   const response =  axios.post(domain+':'+port+'/question/postQuestion', { "QuestionTitle": this.state.title,
     "QuestionTags":  this.state.tags,
     "QuestionBody": this.state.body,}).then(res => {
      id=res.data;
+    
      this.setState({title: ''});
      this.setState({tags: []});
      this.setState({body:''});

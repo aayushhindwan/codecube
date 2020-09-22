@@ -34,9 +34,10 @@ p=await cp.exec("./a.out <./compilerfiles/input.txt", (error,stdout,stderr)=>{
    ans=stdout;
    res.send(ans);
 
-})
+});
 
-res.send("hello");
+//res.JSON("hey");
+res.send("kl");
 
 })
 module.exports=router;

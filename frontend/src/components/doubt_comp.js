@@ -38,7 +38,7 @@ return (
                             <img src="https://homepages.cae.wisc.edu/~ece533/images/goldhill.png" alt="no-img" />
                             <div className="userName"> 
                                 <div>shivam singh</div>
-                                <div className="postedOn">postedOn. 19 July</div>
+<div className="postedOn">postedOn. {this.props.time}</div>
                             </div>
                         </div>                            
                       <Link to={"/questionById/"+this.props._id} >   <div className="postQuestions"> 

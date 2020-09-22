@@ -21,5 +21,5 @@ Answers:
     required:false,
     type:[]
 }
-});
+}, { timestamps: true });
 module.exports =mongoose.model("answer",doubtanswerSchema);
