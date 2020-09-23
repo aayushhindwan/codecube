@@ -8,7 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { Link, useHistory,withRouter} from "react-router-dom";
-
+var g=[];
 class Post_Doubt extends Component {
 
 state={
@@ -20,8 +20,9 @@ state={
 
 SubmitDoubt=(event)=>
 {
+  console.log(g);
   const response =  axios.post('http://localhost:3001/question/postQuestion', { "QuestionTitle": this.state.title,
-    "QuestionTags":  this.state.tags,
+    "QuestionTags": g,
     "QuestionBody": this.state.body,});
   
  
@@ -74,7 +75,7 @@ handleTitleChange=(event)=> {
       el.appendChild(mainInput);
       el.appendChild(hiddenInput);
   
-      addTag('hello!');
+     
   
       function addTag (text) {
           let tag = {
@@ -93,7 +94,7 @@ handleTitleChange=(event)=> {
           tag.element.appendChild(closeBtn);
   
           tags.push(tag);
-  
+          g.push(tag.text);
           el.insertBefore(tag.element, mainInput);
   
           refreshTags();

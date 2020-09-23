@@ -42,11 +42,24 @@ class Home extends Component
 {
    
     state={
-      doubts:[{QuestionTitle:"Testing",QuestionBody:"Testing",_id:"00"}]
+      doubts:[],
+      t:""
     }
+tagsclick=(p)=>
+   {
+
+      console.log("hello",p);
+      this.setState({t:p});
+    axios.get('http://localhost:3001/question/top80/?tags='+p)
+      .then(res => {
+         var persons = res.data;    
+        this.setState({doubts:persons});
+        console.log(persons);
+      })
+}
 async componentDidMount()
 {
- var q= await axios.get('http://localhost:3001/question/top8')
+ var q= await axios.get('http://localhost:3001/question/top80')
       .then(res => {
          var persons = res.data;    
         this.setState({doubts:persons});
@@ -59,7 +72,7 @@ render()
             <div>
   { this.state.doubts.map((p)=>{
     return (
-<Doubt title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} />
+<Doubt onChildClick={this.tagsclick} title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} user={p.QuestionUser} tags={p.Tags} />
     );
    }
    )

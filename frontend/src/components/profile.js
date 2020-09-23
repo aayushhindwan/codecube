@@ -14,12 +14,12 @@ function Profile(){
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowProfile, setModalShowProfile] = React.useState(false);
   const [preview, setpreview] = useState(null)
-  const [name,changeName] = useState("shivam singh")
-  const [publicProfile1,changePublicProfile1] = useState("hackerrank")
-  const [publicProfile2,changePublicProfile2] = useState("code chef")
-  const [studentBranch,change_studentBranch] = useState("computer science")
+  const [name,changeName] = useState("Aayush Hindwan")
+  const [publicProfile1,changePublicProfile1] = useState("")
+  const [publicProfile2,changePublicProfile2] = useState("codechef/user/aayushindwan")
+  const [studentBranch,change_studentBranch] = useState("Computer Science and Engineering")
   const [studentYear,change_studentYear] = useState("2")
-  const [skills,changeSkills] = useState(["reactjs","nodejs"])
+  const [skills,changeSkills] = useState(["C++","Competitive Programming"])
   const [image,changeImage] = useState("https://homepages.cae.wisc.edu/~ece533/images/mountain.png" )
         let Component;
    function showComponent(item){
@@ -193,9 +193,9 @@ function Profile(){
              
                 <div className="student-details">
                 <h4>{name}</h4>
-                <h4>singhsanjay20001</h4>
-                <h4>{`${studentBranch} ${studentYear}`}</h4>
-                <h4>{publicProfile1}</h4>
+                <h4> Email:aayushindwan@gmail.com</h4>
+                <h4>Branch:{`${studentBranch} ${studentYear}`}</h4>
+                <h4>Codechef:{ publicProfile1}</h4>
                 <h4>{publicProfile2}</h4>
 
 

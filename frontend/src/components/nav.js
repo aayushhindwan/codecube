@@ -32,7 +32,7 @@ const NavBar = (props) => {
       <Nav.Link href="/doubts">Doubts</Nav.Link>
       <Nav.Link href="/questions">Questions</Nav.Link>  
     </Nav>
-    <Navbar.Brand href="#" className="ml-auto"><Link to="/profile">Ayushdinwan</Link></Navbar.Brand>
+    <Navbar.Brand href="#" className="ml-auto"><Link to="/profile">aayushindwan</Link></Navbar.Brand>
   </Navbar.Collapse>
 </Navbar>
 

@@ -24,13 +24,13 @@ app.use(bodyParser.json());
 //}));
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://codecubeuser:codecode@cluster0.qe9uy.mongodb.net/codecubeDB?retryWrites=true&w=majority";
-/*const atlasclient = new MongoClient(uri,{ useUnifiedTopology: true });
+const atlasclient = new MongoClient(uri,{ useUnifiedTopology: true });
 atlasclient.connect(err => {
   const collection = atlasclient.db("test").collection("devices");
   // perform actions on the collection object
 
 atlasclient.close();
-});*/
+})
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true

@@ -28,10 +28,20 @@ return top10;
 }
 //router.use(auth);
 router.get('/top:v',async function(req,res){
-    console.log("request came with tags=",req.query.tag);
+    console.log("request came with tags=",req.query.tags);
 no=parseInt(req.params.v);
 console.log(no);
-var q=await questionModel.find().sort().limit(no);
+var q;
+if(req.query.tags)
+{console.log("fh,jkh");
+     q=await questionModel.find({Tags:{$in:[req.query.tags]}}).sort().limit(no);
+  console.log(q);
+    }
+else
+{
+    q=await questionModel.find().sort().limit(no);
+
+}
 //console.log(q);
 //tp10=top(q,req.params.v);
 res.send(q); 
@@ -51,10 +61,10 @@ router.post('/postQuestion',async function(req,res){
    var q=new questionModel({
     QuestionBody:req.body.QuestionBody,
     QuestionTitle:req.body.QuestionTitle,
-    QuestionUser:req.body.QuestionBody,
+    QuestionUser:"aayush",
     UpVote:10,
     DownVote:0,
-    Tags:[],});
+    Tags:req.body.QuestionTags,});
   
    //console.log(q);
 
