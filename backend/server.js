@@ -47,10 +47,8 @@ app.use('/profile',require('./Routes/profile'));
 app.use('/articles',require('./Routes/articles'));
 app.use('/question',require('./Routes/CodingQuestion'));
 app.use('/compiler',require('./Routes/Compilers'));
-app.get('/', function(req,res){
-  console.log("hii");
- //res.send("hii");
- res.sendfile('./testlogin.html');
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.listen(3001,function(){
   console.log("Server is running on port no 3001");
