@@ -1,1 +1,1 @@
-module.exports="http://localhost"
+module.exports="http://codecube.tk"
