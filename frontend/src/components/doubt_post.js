@@ -9,6 +9,7 @@ import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { Link, useHistory,withRouter} from "react-router-dom";
 var g=[];
+import domain from '../domain.js'
 class Post_Doubt extends Component {
 
 state={
@@ -21,7 +22,7 @@ state={
 SubmitDoubt=(event)=>
 {
   console.log(g);
-  const response =  axios.post('http://localhost:3001/question/postQuestion', { "QuestionTitle": this.state.title,
+  const response =  axios.post(domain+':3001/question/postQuestion', { "QuestionTitle": this.state.title,
     "QuestionTags": g,
     "QuestionBody": this.state.body,});
   
