@@ -8,6 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Doubt from './doubt_comp.js'
 import axios from "axios";
 import parse from 'html-react-parser';
+import domain from '../domain.js'
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("")
     return (
@@ -50,7 +51,7 @@ tagsclick=(p)=>
 
       console.log("hello",p);
       this.setState({t:p});
-    axios.get('http://localhost:3001/question/top80/?tags='+p)
+    axios.get(domain+':3001/question/top80/?tags='+p)
       .then(res => {
          var persons = res.data;    
         this.setState({doubts:persons});
@@ -59,7 +60,7 @@ tagsclick=(p)=>
 }
 async componentDidMount()
 {
- var q= await axios.get('http://localhost:3001/question/top80')
+ var q= await axios.get(domain+':3001/question/top80')
       .then(res => {
          var persons = res.data;    
         this.setState({doubts:persons});
