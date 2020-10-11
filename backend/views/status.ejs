@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body class="p-3 mb-2 bg-secondary text-white">
+        
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"> Time </th>
+                <th scope="col">Name</th>
+                <th scope="col"> ProblemCode</th>
+                <th scope="col">STATUS</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                <% for(let i=submissions.length-1;i>=0;i--) {%>
+                <tr>
+                <th scope="row"><%= submissions[i].rank %></th>
+                <td ><%= submissions[i].time%></td>
+                <td><%= submissions[i].name%></td>
+                <td ><%=submissions[i].problem_code%></td>
+                <td><%= submissions[i].status%></td>
+               </tr>
+              <%} %>
+            </tbody>
+          </table>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Session Management in NodeJS using Node and Express</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    var email,pass;
+    function makePostRequest(path, queryObj) { 
+    axios.post(path, queryObj).then( 
+        (response) => { 
+            var result = response.data; 
+            console.log(result);
+            if(result==="done")
+            window.location.href="/practice"; 
+            else 
+            window.location.href="/signup";
+        }, 
+        (error) => { 
+            console.log(error); 
+            window.location.href="/signup";
+        } 
+    ); 
+}     
+    $("#submit").click(function(){
+        email=$("#email").val();
+        pass=$("#password").val();
+        /*
+        * Perform some validation here.
+        */
+
+       console.log(email+" "+pass);
+       var queryObj={email:email,pass:pass};
+       makePostRequest("/login/login",queryObj);
+    });
+});
+</script>
+</head>
+<body>
+<input type="text" size="40" placeholder="Type your email" id="email"><br />
+<input type="password" size="40" placeholder="Type your password" id="password"><br />
+<input type="button" value="Login" id="submit">
+</body>
+</html>

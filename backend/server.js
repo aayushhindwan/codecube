@@ -22,6 +22,7 @@ app.use(bodyParser.json());
   saveUninitialized: false,
   resave: false*/
 //}));
+
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://codecubeuser:codecode@cluster0.qe9uy.mongodb.net/codecubeDB?retryWrites=true&w=majority";
 const atlasclient = new MongoClient(uri,{ useUnifiedTopology: true });
@@ -35,6 +36,7 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
 router=express.Router();
 app.use('/',require('./Routes/homepage'));
 app.use('/question',require('./Routes/questions'));
@@ -48,7 +50,7 @@ app.use('/articles',require('./Routes/articles'));
 app.use('/question',require('./Routes/CodingQuestion'));
 app.use('/compiler',require('./Routes/Compilers'));
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.listen(3001,function(){
   console.log("Server is running on port no 3001");
