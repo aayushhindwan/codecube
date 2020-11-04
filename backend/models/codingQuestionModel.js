@@ -13,7 +13,7 @@ QuestionBody:{
     type:String,
     required:true
 },
-QuestionTags:{
+Tags:{
     type:Array,
     required:true
 },

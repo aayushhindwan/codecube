@@ -8,7 +8,8 @@ res.send("like route get request came");
 });
 router.post('/',async function(req,res){
 //user=req.session.email;
-user="aayush";
+user=req.userId;
+console.log(user);
 id=req.body.id;
 val=req.body.inc;
 var x=await likeModel.findOne({

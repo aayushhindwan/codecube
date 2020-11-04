@@ -7,6 +7,7 @@ import Answer from './answer_doubt.js'
 import {Button,Modal} from 'react-bootstrap'
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import domain from '../domain.js'
 export default class questions extends Component {
     static propTypes = {
         prop: PropTypes
@@ -24,7 +25,11 @@ export default class questions extends Component {
 async componentDidMount()
 {
 
-axios.get("http://localhost:3001/answer/getanswer/"+this.props.match.params.id).then(res => {
+axios.get(domain+":3001/answer/getanswer/"+this.props.match.params.id,{
+  headers: {
+    'authorization': 'Bearer '+ localStorage.Token,
+  }
+}).then(res => {
          var m = res.data;
       
         this.setState({Answer:m.Answers});
@@ -39,7 +44,14 @@ axios.get("http://localhost:3001/answer/getanswer/"+this.props.match.params.id).
       SubmitAnswer=(event)=>
 {
    if(this.state.text){
-    const response =  axios.post('http://localhost:3001/answer/postanswer/'+this.props.match.params.id, { Body: this.state.text,});
+    const response =  axios.post(domain+':3001/answer/postanswer/'+this.props.match.params.id, { Body: this.state.text,},{
+      headers: {
+        'authorization': 'Bearer '+ localStorage.Token,
+      }
+    }).then((res)=>{
+         console.log(res);
+         window.location.reload();
+    });
    }else{
      alert("please write the answer")
    }
@@ -77,7 +89,7 @@ this.setState({text: ""});
                       <div className="all_answers">
                      <h2> Answers</h2>
                         {
-                       /*this.stateAnswer.map((a,i)=>{
+                       this.state.Answer.map((a,i)=>{
                            return(
                        <div>
                             <Answer body={a.body} indexValue={i+1}/>
@@ -87,7 +99,7 @@ this.setState({text: ""});
                          })
                         
                          
-*/
+
 
                         }
 

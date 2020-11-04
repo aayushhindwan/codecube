@@ -9,21 +9,18 @@ export default class signup extends Component {
     render() {
         return (
             <div className="main-form-container">
-               <div className="form-data">
-                   <h4>User Name</h4>
-                   <input type="text" />
-               </div>
+            
                <div className="form-data">
                    <h4>Email</h4>
-                   <input type="text" />
+                   <input value={this.props.email} onChange={this.props.emailChange} type="text" />
                </div>
                <div className="form-data">
                    <h4>Password</h4>
-                   <input type="text" />
+                   <input value={this.props.password} onChange={this.props.passwordChange} type="password" />
                </div>
                <div className="form-data">
                    <h4>Re-enter Password</h4>
-                   <input type="text" />
+                   <input type="password" />
                </div>
             </div>
         )

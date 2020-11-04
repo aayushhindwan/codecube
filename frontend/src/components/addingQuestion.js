@@ -2,9 +2,32 @@ import React, { Component } from 'react'
 import '../assests/scss/addingQuestion.scss'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+var tg=[];
 export default class AddingQuestion extends Component {
-    
+    state={
+        QuestionTitle:"a",QuestionBody:"a", Editorial:"a"
+    }
+    submitQuestion=()=>
+    {
+        axios.post('http://localhost:3001/question',{
+            QuestionTitle:this.state.QuestionTitle,
+            QuestionBody:this.state.QuestionBody,
+            Tags:tg,
+            Editorial:this.state.Editorial,
+          }).then((res)=>{
+            if(res.status==200)
+            {
+              alert(res.data);
+            }
+            else
+            {
+              alert (res.data);
+            }
+          }).catch((err)=>{alert(err)});
+        
+    }
 
     componentDidMount(){
         [].forEach.call(document.getElementsByClassName('tags-input'), function (el) {
@@ -58,7 +81,7 @@ export default class AddingQuestion extends Component {
               tag.element.appendChild(closeBtn);
       
               tags.push(tag);
-      
+              tg.push(tag.text);
               el.insertBefore(tag.element, mainInput);
       
               refreshTags();
@@ -90,27 +113,43 @@ export default class AddingQuestion extends Component {
                   <div className="main-add-question-container">
                       <div>Please write your question briefly , So that it is easily to understand.</div>
                       <div className="add-question-title">Title</div>
-                      <div className="ck-editor">
+                      <div className="question-body">
+                      <input value={this.state.QuestionTitle} onChange={(event)=>{ this.setState({QuestionTitle:event.target.value})}} type="text"/></div>
+                      <div className="add-question-title">Write the Body</div>
+                     <div className="question-body">
+                     <div className="ck-editor">
                       <CKEditor 
                         editor={ClassicEditor}
-                        
+                        data = {this.state.QuestionBody}
+                         onChange={(e,editor)=> {
+                      console.log(editor.getData());
+                 this.setState({QuestionBody:editor.getData()});
+          }}
                         />
                       </div>
-                      <div className="add-question-title">Write the question</div>
-                     <div className="question-body">
-                         <textarea>write the body of the question</textarea>
+                         
                      </div>
                      <div className="add-question-title">Write the Editorial</div>
-
-                     <div className="question-body">
-                         <textarea>write the body of the question</textarea>
-                     </div>
-
+                     <div className="question-body">``
+                     <div className="ck-editor">
+                      <CKEditor 
+                        editor={ClassicEditor}
+                        data = {this.state.Editorial}
+                         onChange={(e,editor)=> {
+                      console.log(editor.getData());
+                 this.setState({Editorial:editor.getData()});
+          }}
+                        />
+                      </div>
+                      </div>
                      <div className="add-question-title">Add the tags</div>
+                     <br/>
                      <div className="tags-input" data-name="tags-input">
                       {/* <span class="tag">HTML<span class="close"></span></span> */}
                      </div>
+                     <Button onClick={this.submitQuestion}>Submit</Button>
                   </div>
+              
             </div>
         )
     }

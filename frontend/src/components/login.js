@@ -17,7 +17,7 @@ export default class login extends Component {
                </div>
                <div className="form-data">
                    <h4>Password</h4>
-                   <input type="text" />
+                   <input type="password" />
                </div>
               
             </div>

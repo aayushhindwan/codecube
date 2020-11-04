@@ -2,7 +2,8 @@ import React, { Component, useState,useEffect } from 'react'
 import {Button,ListGroup,Modal} from 'react-bootstrap'
 import '../assests/scss/profile.scss'
 import Avatar from 'react-avatar-edit'
-import MyVerticallyCenteredModalProfile from './myVerticallyCenteralModalProfile'
+import MyVerticallyCenteredModalProfile from './myVerticallyCenteralModalProfile';
+import axios from 'axios';
 // function  onClose() {
 //     this.setState({preview: null})
 //   }
@@ -14,14 +15,34 @@ function Profile(){
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowProfile, setModalShowProfile] = React.useState(false);
   const [preview, setpreview] = useState(null)
-  const [name,changeName] = useState("Aayush Hindwan")
+  const [name,changeName] = useState("Unknown")
   const [publicProfile1,changePublicProfile1] = useState("")
-  const [publicProfile2,changePublicProfile2] = useState("codechef/user/aayushindwan")
+  const [publicProfile2,changePublicProfile2] = useState("unknown")
   const [studentBranch,change_studentBranch] = useState("Computer Science and Engineering")
   const [studentYear,change_studentYear] = useState("2")
   const [skills,changeSkills] = useState(["C++","Competitive Programming"])
   const [image,changeImage] = useState("https://homepages.cae.wisc.edu/~ece533/images/mountain.png" )
         let Component;
+        useEffect(()=>{
+          console.log("hiiii");
+          axios.get('http://localhost:3001/profile/user',{
+            headers: {
+              'authorization': 'Bearer '+ localStorage.Token,
+            }
+          }).then((res)=>{
+            console.log(res);
+            
+          changeName(res.data.FullName);
+           changePublicProfile1(res.data.CodeChefProfile);
+          changePublicProfile2(res.data.CodeForceProfile);
+         change_studentBranch(res.data.Branch);
+         change_studentYear(res.data.GraduationYear);
+        changeSkills(res.data.Interests)
+          },[]);
+
+
+
+        });
    function showComponent(item){
             //  if(item == "Doubts"){return Component = <Doubts />}
             //  if(item == "Posts"){return Component = <Posts />}
@@ -71,6 +92,8 @@ function Profile(){
 
 
     function onClose() {
+
+
       setpreview(null)
     }
     
@@ -193,10 +216,10 @@ function Profile(){
              
                 <div className="student-details">
                 <h4>{name}</h4>
-                <h4> Email:aayushindwan@gmail.com</h4>
-                <h4>Branch:{`${studentBranch} ${studentYear}`}</h4>
+                
+                <h4>Branch:{`${studentBranch}  ${studentYear}`}</h4>
                 <h4>Codechef:{ publicProfile1}</h4>
-                <h4>{publicProfile2}</h4>
+                <h4>Codeforce:{publicProfile2}</h4>
 
 
                 <Button

@@ -7,6 +7,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Doubt from './doubt_comp.js'
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("")
@@ -59,7 +60,11 @@ tagsclick=(p)=>
 }
 async componentDidMount()
 {
- var q= await axios.get('http://localhost:3001/question/top80')
+ var q= await axios.get('http://localhost:3001/doubts/top80', {
+  headers: {
+    'authorization': 'Bearer '+ localStorage.Token,
+  }
+})
       .then(res => {
          var persons = res.data;    
         this.setState({doubts:persons});
@@ -70,6 +75,7 @@ render()
 
         return (
             <div>
+              <Link to ="/contribute"><h4>Want to contribute question ! You are most welcome</h4></Link>
   { this.state.doubts.map((p)=>{
     return (
 <Doubt onChildClick={this.tagsclick} title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} user={p.QuestionUser} tags={p.Tags} />

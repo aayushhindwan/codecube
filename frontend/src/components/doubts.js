@@ -1,11 +1,13 @@
-import React, { useState} from 'react'
+import React, {Component, useState} from 'react'
 import PropTypes from 'prop-types'
 import '../assests/scss/doubts.scss'
 import {Button,Modal} from 'react-bootstrap'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Post_Doubt from './doubt_post.js'
-
+import Doubt from './doubt_comp.js'
+import axios from "axios";
+import { Link } from 'react-router-dom';
 function MyVerticallyCenteredModalForAnswer(props) {
   const [answer,changeAnswer] = useState("");
 
@@ -61,55 +63,58 @@ function MyVerticallyCenteredModal(props) {
     );
   }
 
-function Doubts(){
-    const [modalShow, setModalShow] = React.useState(false);
-    const [modalShowAns, setModalShowAns] = React.useState(false);
+class Doubts extends Component{
+    
+    state={
+      doubts:[],
+      t:"",
+      modalShow:false,
+      modalShowAns:false,
+    }
+    async componentDidMount()
+    {
+     var q= await axios.get('http://localhost:3001/doubts/top80', {
+      headers: {
+        'authorization': 'Bearer '+ localStorage.Token,
+      }
+    })
+          .then(res => {
+             var persons = res.data;    
+            this.setState({doubts:persons});
+          })
+    }
+       render()
+       {
 
         return (
             <>
             <MyVerticallyCenteredModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
+            show={this.state.modalShow}
+            onHide={() => this.setState({modelShow:false})}
           />
                <MyVerticallyCenteredModalForAnswer
-            show={modalShowAns}
-            onHide={() => setModalShowAns(false)}
+               show={this.state.modalShowAns}
+               onHide={() => this.setState({modalShowAns:false})}
           />
           {/* // main doubts  */}
             <div className="main_div">
-                   <div className="announcement" onClick={() => setModalShow(true)}>
+                   <div className="announcement" onClick={() => {this.setState({modelShow:true,modalShowAns:true})}}>
                     <i class="fa fa-book" aria-hidden="true"></i>
                         <div> What is your Doubts </div>
                    </div>
-                  
-                   <div className="posts">
-                       <div className="authorId">
-                            <img src="https://homepages.cae.wisc.edu/~ece533/images/goldhill.png" alt="no-img" />
-                            <div className="userName"> 
-                                <div className="name">shivam singh</div>
-                                <div className="postedOn">postedOn. 19 July</div>
-                            </div>
-                        </div>         
-                                  
-                        <div className="postQuestions"> 
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        </div> 
-                        <div className="answerPost">
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer
-                        This is my Questions are the c languages that is used for reference pointer......
-                        </div>
-                        <div className="answerBtn">
-                            <Button onClick={() => setModalShowAns(true)}> Answer </Button>
-                        </div>
                    </div>
-            </div>
+                   { this.state.doubts.map((p)=>{
+    return (
+<Doubt onChildClick={this.tagsclick} title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} user={p.QuestionUser} tags={p.Tags} />
+    );
+   }
+   )
+ }
+                 
+            
             </>
-        )
+        );
+}
     }
 
 export default Doubts

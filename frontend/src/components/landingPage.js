@@ -5,7 +5,8 @@ import {Button,Modal} from 'react-bootstrap'
 import Signup from './signup'
 import SignIn from './login'
 import '../assests/scss/landingPage.scss'
-
+import signup from './signup';
+import axios from 'axios';
   
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("");
@@ -19,11 +20,11 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-             Sign-up with the following detail
+             New Account on CodeCube
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Signup  />
+          <Signup passwordChange={props.passwordChange} emailChange={props.emailChange} email={props.email} password={props.password}/>
           </Modal.Body>
           <div className="signIn-redirect"
           style ={{marginLeft:"20px"}}
@@ -31,13 +32,13 @@ function MyVerticallyCenteredModal(props) {
           <div
           style ={{color:"blue"}}
           onClick = {() => {
-           props.onHide()
+            props.onHide()
              props.setModalShowSignIn()
           }}
           >Sign in</div>
           </div>
           <Modal.Footer>
-              <Button>Sign-up</Button>
+              <Button onClick={props.childClick} >Sign-up</Button>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
@@ -56,11 +57,22 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-             Sign-in with the following detail
+            Enter your Email and password to Get Set Go!
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SignIn />
+        <div className="main-form-container">
+               
+               <div className="form-data">
+                   <h4>Email</h4>
+                   <input value={props.email} onChange={props.emailChange} type="text" />
+               </div>
+               <div className="form-data">
+                   <h4>Password</h4>
+                   <input value={props.password} onChange={props.passwordChange} type="password" />
+               </div>
+              
+            </div>
           </Modal.Body>
           <div className="signIn-redirect"
           style ={{marginLeft:"20px"}}
@@ -71,10 +83,10 @@ function MyVerticallyCenteredModal(props) {
               props.onHide()
              props.setModalShow()
           }}
-          >Sign in</div>
+          >Sign up</div>
           </div>
           <Modal.Footer>
-              <Button>Sign-up</Button>
+              <Button onClick={props.childClick}>Sign-In</Button>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
@@ -85,17 +97,67 @@ function MyVerticallyCenteredModal(props) {
 function LandingPage () {
     const [modalShow, setModalShow] = useState(false);
     const [modalShowSignIn, setModalShowSignIn] = useState(false);
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+      const signUP=()=>
+        {
+          //console.log(email,password);
+
+          axios.post('http://localhost:3001/signup',{
+            "email":email,
+            "password":password,
+          }).then((res)=>{
+          
+            if(res.status==200)
+            {
+              alert(res.data);
+            }
+            else
+            {
+              alert (res.data);
+            }
+          }).catch((err)=>{alert(err)});
+        }
+        const signIN=()=>
+        {
+          console.log("signin");
+          axios.post('http://localhost:3001/login',{
+            "email":email,
+            "password":password,
+          }).then((res)=>{
+            if(res.status==200)
+            {
+              localStorage.Token=res.data;
+              alert("logged In");
+            }
+            else
+            {
+              alert (res.data);
+            }
+          }).catch((err)=>{alert(err)});
+          
+        }
         return (
             <>
             <MyVerticallyCenteredModal
             show={modalShow}
             onHide={() => setModalShow(false)}
+            childClick={signUP}
+            email={email}
+            password={password}
+            emailChange={(event)=>{setEmail(event.target.value);}}
+            passwordChange={(event)=>{setPassword(event.target.value);}}
             setModalShowSignIn = {() => setModalShowSignIn(true)}
           />
            <MyVerticallyCenteredModalSignIn
             show={modalShowSignIn}
             onHide={() => setModalShowSignIn(false)}
             setModalShow = {() => setModalShow(true)}
+            childClick={signIN}
+            email={email}
+            password={password}
+            emailChange={(event)=>{setEmail(event.target.value);}}
+            passwordChange={(event)=>{setPassword(event.target.value);}}
           />
             <div className = "main-landingPage">
                 <div className="sub-div-landingPage">

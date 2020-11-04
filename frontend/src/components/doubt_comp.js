@@ -32,7 +32,11 @@ console.log(this.props.tags);
   
   handleLike=(event)=>
   {
-   axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:1}).then(res=>{
+   axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:1},{
+    headers: {
+      'authorization': 'Bearer '+ localStorage.Token,
+    }
+  }).then(res=>{
     console.log("liked");
     window.location.reload();
    });
@@ -42,7 +46,11 @@ console.log(this.props.tags);
   handleDislike=(event)=>
   {
     this.setState({y:this.state.y-1});
-    axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:-1}); 
+    axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:-1},{
+      headers: {
+        'authorization': 'Bearer '+ localStorage.Token,
+      }
+    }); 
     window.location.reload();
   }
 

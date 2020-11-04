@@ -1,12 +1,24 @@
-
+const jwt=require('jsonwebtoken')
 module.exports =function(req,res,next)
 {
-  ss=req.session;
-  console.log("session email=",ss.email);
-  if(ss.email)
-  {next();
-  return}
+bearerHeader=req.headers['authorization'];
+console.log("hiiiii");
+if(bearerHeader !== undefined)
+{
+bearer=bearerHeader.split(' ');
+token=bearer[1];
+ jwt.verify(token,'nitp',(err,data)=>{
+   if(err)
+   res.status(400).send("no sign in");
+    else
+    { req.userId=data.payload.id;
+      req.email=data.payload.email;
+      console.log("hii",req.userId);
+      console.log(data);next();}
+ });
+  }
   else
-  return res.redirect('http://localhost:3001/login');
+  {console.log("hisssiii");res.status(400).send("no sign in");
+}
     
 }

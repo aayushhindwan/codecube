@@ -1,8 +1,9 @@
 const mongoose=require('mongoose');
 var userInfoSchema=new mongoose.Schema({
-/*FullName:{
-    type:String
-},*/
+FullName:{
+    type:String,
+    required:false
+},
 Email:
 {
     type:String,

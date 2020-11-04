@@ -17,6 +17,7 @@
     "express-router": "0.0.1",
     "express-session": "^1.17.1",
     "googleapis": "^39.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.24",
     "nltk": "0.0.1",

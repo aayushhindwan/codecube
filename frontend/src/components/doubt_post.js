@@ -21,9 +21,13 @@ state={
 SubmitDoubt=(event)=>
 {
   console.log(g);
-  const response =  axios.post('http://localhost:3001/question/postQuestion', { "QuestionTitle": this.state.title,
+  const response =  axios.post('http://localhost:3001/doubts/postQuestion', { "QuestionTitle": this.state.title,
     "QuestionTags": g,
-    "QuestionBody": this.state.body,});
+    "QuestionBody": this.state.body,},{
+      headers: {
+        'authorization': 'Bearer '+ localStorage.Token,
+      }
+    });
   
  
 this.setState({title: ''});
