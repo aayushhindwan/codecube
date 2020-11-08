@@ -17,7 +17,6 @@ x= await user.findById(req.userId,async function(err,data){
     { d=JSON.stringify(data);
         d=JSON.parse(d);
         delete d['Password'];
-        
     console.log(d);
         res.status(200).send(d);}
 });

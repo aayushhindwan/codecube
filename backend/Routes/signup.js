@@ -10,7 +10,7 @@ var p=req.body.password;
 console.log(e);
 x= await userInfoModel.findOne({Email:e},function(obj){
  //   console.log(obj);
-   // console.log("hii");
+   // console.log("hii")
 });
 if(!x)
 {

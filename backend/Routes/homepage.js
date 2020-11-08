@@ -4,4 +4,4 @@ const router=express.Router();
 router.get('/aayu',function(req,res){
 res.send("HELLo");
 });
-module.exports=router;
+module.exports=router;  

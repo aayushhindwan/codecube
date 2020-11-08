@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/codemirror.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/codemirror.min.css">
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/mode/clike/clike.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/theme/dracula.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>.
+
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/anyword-hint.js"></script>
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/javascript-hint.js"></script>
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/show-hint.js"></script>
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/html-hint.js"></script>
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/sql-hint.js"></script>
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/xml-hint.js"></script>
+        <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/css-hint.js"></script>
+        <slink rel= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/addon/hint/show-hint.css">
+
+
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script>
+      </script>
+    </head>
+    <body class="p-3 mb-2 bg-secondary text-white">
+        
+            <div>
+              <label  class="label label-primary" for="lang">Choose a language:</label>
+              <select class="btn btn-primary dropdown-toggle" id="lang" name="lang">
+              <option value="cpp14">cpp14</option>
+              <option value="c">c</option>
+              <option value="cpp11">cpp11</option>
+              <option value="cpp17">cpp17</option>
+              <option value="java">java</option>
+              <option value="python2">python2</option>
+              <option value="python3">python3</option>
+              </select>
+              <br>
+              <textarea type="text" class="carea" id="codearea1"  name="code" style="background: #000000;color:#ffffff;height:1000px ;width:500px;float:left;"><%= code %></textarea>
+     
+               <textarea type="text" height="100px" width="400px"  id="input" name="input" style="background: #000000;color:#ffffff;height:200px ;width:50%;"> <%= input %></textarea>
+              <textarea type="text"  id="output" name="input" style="background: #000000;color:#ffffff;height:200px ;width:50%;float:left" > <%= output %> </textarea>
+            </div>
+            <div>
+                <input type="submit" name="submit" value="Test Code" id="submit" class="btn btn-success" style="margin-left:47% ;border-radius:20px;box-shadow:0 4px 6px 0 rgba(0,0,0,0.2)"/>
+                <div id='loader' style='display: none;float:left'>
+                <img src='https://static.dribbble.com/users/2346349/screenshots/9246147/media/06971345603f8422d664fa0ea362b3a5.gif' style = "margin-left:30%;"  width='100px' height='100px'>
+                </div>
+            </div> 
+            
+        <script type="text/javascript" >
+        var code;
+
+        $(document).ready(function(){
+
+
+        var codemirrorEditor = CodeMirror.fromTextArea( document.getElementById("codearea1"), {
+        lineNumbers: true,
+        mode: "clike",
+        theme: "dracula",
+        tabSize: 4,
+        extraKeys:{"Ctrl-Space":"autocomplete"}
+      });
+      
+      function makePostRequest(path, queryObj) { 
+    axios.post(path, queryObj).then( 
+        (response) => { 
+            var result = response.data; 
+            console.log(result); 
+            $("#output").html(result.output);
+            $("#submit").attr("disabled",false);
+            $("#loader").hide();
+        }, 
+        (error) => { 
+            console.log(error); 
+        } 
+    ); 
+}           
+$("#submit").click(function(){
+                    $("#submit").attr("disabled",true);
+                    $("#loader").show();
+                 code=codemirrorEditor.getValue();
+               var inp=$("#input").val();
+                 var lang=$("#lang").val();
+                
+              queryObj = { code:code,input:inp,lang:lang}; 
+              console.log(queryObj);
+              makePostRequest('/compile/codes', queryObj); 
+               });
+
+    });
+      
+
+    </script>
+    </body>
+</html>
