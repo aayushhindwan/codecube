@@ -14,7 +14,8 @@ token=bearer[1];
     { req.userId=data.payload.id;
       req.email=data.payload.email;
       console.log("hii",req.userId);
-      console.log(data);next();}
+      console.log(data);next();
+    }
  });
   }
   else
