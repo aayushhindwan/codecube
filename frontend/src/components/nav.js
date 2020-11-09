@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import {Link} from "react-router-dom";
-import {Navbar,Nav,NavDropdown,Form,} from 'react-bootstrap'
+import {Navbar,Nav,NavDropdown,Form, Button,} from 'react-bootstrap'
 import '../assests/scss/navBar.css'
 import styled from 'styled-components'
-
+import axios from 'axios';
 const Styles = styled.div`
 .navbar{
     color : white;
@@ -19,7 +19,26 @@ const Styles = styled.div`
     color : white
 }`
 const NavBar = (props) => {
+  const [logout,change]=useState(false);
+  function x()
+  {
+    if(logout)
+    return(<Button onClick={()=>{localStorage.Token=undefined;window.location.reload();}}>Logout</Button>)
+  }
+ 
+  useEffect(()=>
+  {  
+     axios.get('http://localhost:3001/isSignedIn',{
+      headers: {
+        'authorization': 'Bearer '+ localStorage.Token,
+      }
+    }).then(res=>{
+      if(res.status==200)
+       change(true);
 
+     });
+
+  },[]);
     return (
         <Styles>
      <Navbar bg="dark" expand="lg">
@@ -33,7 +52,11 @@ const NavBar = (props) => {
       <Nav.Link href="/questions">Questions</Nav.Link>  
     </Nav>
     <Navbar.Brand href="#" className="ml-auto"><Link to="/profile">Profile</Link></Navbar.Brand>
+    {
+  x()
+}
   </Navbar.Collapse>
+  
 </Navbar>
 
   </Styles>

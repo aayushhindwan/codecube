@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react'
+import React, { Component,useEffect,useState } from 'react'
 import SRCIMG from '../assests/images/landingSVG.svg'
 import {Link} from "react-router-dom";
 import {Button,Modal} from 'react-bootstrap'
@@ -7,7 +7,7 @@ import SignIn from './login'
 import '../assests/scss/landingPage.scss'
 import signup from './signup';
 import axios from 'axios';
-  
+import {  useHistory,withRouter} from "react-router-dom";
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("");
   
@@ -94,11 +94,25 @@ function MyVerticallyCenteredModal(props) {
   }
 
 
-function LandingPage () {
+function LandingPage (props) {
     const [modalShow, setModalShow] = useState(false);
     const [modalShowSignIn, setModalShowSignIn] = useState(false);
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+    useEffect(()=>
+    {  
+       axios.get('http://localhost:3001/isSignedIn',{
+        headers: {
+          'authorization': 'Bearer '+ localStorage.Token,
+        }
+      }).then(res=>{
+        if(res.status==200)
+         props.history.push('/home');
+
+
+       });
+
+    },[]);
       const signUP=()=>
         {
           //console.log(email,password);
@@ -110,7 +124,10 @@ function LandingPage () {
           
             if(res.status==200)
             {
-              alert(res.data);
+              alert("User Added Now Do Sign In");
+              setModalShow(false);
+              setModalShowSignIn(true);
+            
             }
             else
             {
@@ -129,6 +146,8 @@ function LandingPage () {
             {
               localStorage.Token=res.data;
               alert("logged In");
+              props.history.push("/profile");
+              window.location.reload();
             }
             else
             {
