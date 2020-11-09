@@ -49,6 +49,8 @@ axios.get(domain+":3001/answer/getanswer/"+this.props.match.params.id,{
         'authorization': 'Bearer '+ localStorage.Token,
       }
     }).then((res)=>{
+      if(res.status==202)
+      this.props.history.push("/");
          console.log(res);
          window.location.reload();
     });

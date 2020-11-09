@@ -78,8 +78,9 @@ export default class myVerticallyCenteralModalProfile extends Component {
              <Avatar
              width={390}
              height={295}
-                 onCrop={this.onCrop}
-                onClose={this.onClose}  
+             onCrop={this.onCrop}
+             onClose={this.onClose}  
+             
              />
                      <img src ={this.state.preview} alt="no_image" width = "300px" height="300px"/>
              </div>
@@ -88,15 +89,16 @@ export default class myVerticallyCenteralModalProfile extends Component {
             <Modal.Footer>
             <Button type="submit"
                 
-              onClick={() => {
-                props.changeName(this.state.name)
+              onClick={async () => {
+                await props.changeName(this.state.name);
                 /*props.changeImage(this.state.preview)*/
-                props.changeProfile1(this.state.publicProfile1)
-                props.changeProfile2(this.state.publicProfile2)
-                props.changeBranch(this.state.studentBranch)
-                props.changeYear(this.state.studentYear)
-               props.changeImage(this.state.preview)
-                props.onHide()
+                await props.changeProfile1(this.state.publicProfile1);
+                await props.changeProfile2(this.state.publicProfile2);
+                await props.changeBranch(this.state.studentBranch);
+                await props.changeYear(this.state.studentYear);
+                await props.changeImage(this.state.preview);
+                await props.onHide();
+                props.submit();
 
               }}
             >Submit</Button>

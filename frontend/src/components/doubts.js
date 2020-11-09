@@ -6,6 +6,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Post_Doubt from './doubt_post.js'
 import Doubt from './doubt_comp.js'
+import {  useHistory,withRouter} from "react-router-dom";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 function MyVerticallyCenteredModalForAnswer(props) {
@@ -19,16 +20,16 @@ function MyVerticallyCenteredModalForAnswer(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-           Write your Answer
+           Write your Doubt
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-     <Post_Doubt/>
+     <Post_Doubt close={props.onHide}/>
          
         </Modal.Body>
         <Modal.Footer>
-            <Button>Submit</Button>
-        <Button onClick={props.onHide}>Close</Button>
+            
+      
       </Modal.Footer>
     </Modal>
   );
@@ -76,6 +77,9 @@ class Doubts extends Component{
       }
     })
           .then(res => {
+            console.log(res);
+            if(res.status==202)
+           this.props.history.push("/");
              var persons = res.data;    
             this.setState({doubts:persons});
           })

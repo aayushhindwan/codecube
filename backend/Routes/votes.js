@@ -8,7 +8,9 @@ res.send("like route get request came");
 });
 router.post('/',async function(req,res){
 //user=req.session.email;
-user=req.userId;
+
+user=req.email;
+console.log("like/dislike request came");
 console.log(user);
 id=req.body.id;
 val=req.body.inc;

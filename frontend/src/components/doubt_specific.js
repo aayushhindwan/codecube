@@ -7,6 +7,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import  { Component } from 'react'
 import { Redirect } from 'react-router';
+import {  useHistory,withRouter} from "react-router-dom";
 export default class Doubt extends Component
 {
   state={id:'',answers:[]}
@@ -15,6 +16,8 @@ export default class Doubt extends Component
 
 axios.get('http://localhost:3001/getanswer/this.props.match.params.id')
       .then(res => {
+        if(res.status==202)
+      this.props.history.push("/");
          var d= res.data;
         this.setState({answers:d.Answers});
         this.setState({title:d.question.QuestionTitle});

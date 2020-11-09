@@ -1,62 +1,73 @@
-const { clearCache } = require('ejs');
-const express = require('express');
-const router = express.Router();
-const user_database=require('../models/user');
+const express=require('express')
+const jwt=require('jsonwebtoken');
+const router=express.Router();
+const userInfoModel=require('../models/userInfoModel');
+const { response } = require('express');
+const session = require('express-session')
+var cors = require('cors');
+router.use(cors({
+    origin: [
+      'http://localhost:3000',
+      
+    ],
+    credentials: true,
+    exposedHeaders: ['set-cookie']
+  }));
+router.use(cors({origin: "http://localhost:3000",
+credentials: true}))
+const redis = require('redis')
 
-function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
-router.post('/login',(req,res) => {
-    var em=req.body.email;
-    var pass=req.body.pass;
-    console.log(em+" "+pass);
-    let dd="";
-     let flag=0;
-     user_database.findOne({email:em,password:pass},function(err,obj){
-        if(err){
-            console.log(err);
-            flag=0;
-            res.end("notdone")
-        }
-        try{
-        console.log(obj.email);
-        console.log(obj.password);
-        }
-        catch(error)
-        {
-            console.log(error);
-            res.end("notdone");
-        }
-        if(!isEmpty(obj)&&obj.email==em){ 
-            req.session.email=em;
-            res.end("done");
-            flag=1;
-        }
-    });
-    setTimeout(function(){
-        if(flag==1){
-        req.session.email=em;
-        res.end("done");
-        }
-        else 
-        {
-            console.log("We are here to debug\n");
-            res.end("notdone");
-        }
-    },3500); 
+const redisStore=require('connect-redis')(session);
+const client  = redis.createClient();
+router.use(session({
+secret: 'ssshhhhh',
+// create new redis store.
+store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl : 260}),
+saveUninitialized: false,
+resave: false
+}));
+router.post('/', async function(req,res){
+    
+    console.log("aaya");
+    var e=req.body.email;
+    var p=req.body.password;
+    console.log(e);
+    var x;
+    
+ x=  await userInfoModel.findOne({Email:e,Password:p},function(err,obj){
+     if(err)
+     {
+      console.log(err);
+     }
+     else{
+    console.log(obj);
+    console.log("hii:");
+     }
 });
-router.get('/',(req,res) => {
-    console.log(req.session.email);
-    if(req.session.email) {
+if(x)
+{  console.log(e);
+    //req.session.email="aayush";
+     var payload={email:e,id:x._id};
+        jwt.sign({payload},'nitp',(err,token)=>{
+if(!err)
+res.status(200).send(token);
+else
+res.status(400).send("error");
+        });
+}
+else
+    res.status(400).send("email/password doesn't matched");
 
-        res.writeHead(201, { "Location": "http://" + req.headers['host'] + '/practice' });
-    }
-    else {
-        res.render("index",{});
-    }
+});
+router.get('/aaytu',function(req,res){
+   // req.session.email="dfghjk";
+    console.log("came",req.session);
+   
+    res.send('./n.html');
+    });
+ router.get('/', function(req,res){
+     console.log("hii");
+    //res.send("hii");
+    res.sendfile('./testlogin.html');
 });
 module.exports=router;

@@ -8,6 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Doubt from './doubt_comp.js'
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import {  useHistory,withRouter} from "react-router-dom";
 import parse from 'html-react-parser';
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("")
@@ -43,7 +44,7 @@ class Home extends Component
 {
    
     state={
-      doubts:[],
+      doubts:[{"QuestionTitle":"hello"}],
       t:""
     }
 tagsclick=(p)=>
@@ -53,6 +54,8 @@ tagsclick=(p)=>
       this.setState({t:p});
     axios.get('http://localhost:3001/question/top80/?tags='+p)
       .then(res => {
+        if(res.status==202)
+      this.props.history.push("/");
          var persons = res.data;    
         this.setState({doubts:persons});
         console.log(persons);
@@ -60,14 +63,23 @@ tagsclick=(p)=>
 }
 async componentDidMount()
 {
+  console.log("hiiw");
  var q= await axios.get('http://localhost:3001/doubts/top80', {
   headers: {
     'authorization': 'Bearer '+ localStorage.Token,
   }
 })
       .then(res => {
+        console.log("homeee");
+        console.log(res);
+        if(res.status==202)
+      this.props.history.push("/");
          var persons = res.data;    
         this.setState({doubts:persons});
+      }).catch(err=>{
+        console.log("erroer");
+        this.props.history.push("/");
+
       })
 }
 render()
@@ -78,7 +90,10 @@ render()
               <Link to ="/contribute"><h4>Want to contribute question ! You are most welcome</h4></Link>
   { this.state.doubts.map((p)=>{
     return (
-<Doubt onChildClick={this.tagsclick} title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} user={p.QuestionUser} tags={p.Tags} />
+<Doubt x={()=>{
+  
+  this.props.history.push("/");
+}} onChildClick={this.tagsclick} title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} user={p.QuestionUser} tags={p.Tags} />
     );
    }
    )

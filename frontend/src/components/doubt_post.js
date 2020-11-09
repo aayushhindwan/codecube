@@ -27,13 +27,22 @@ SubmitDoubt=(event)=>
       headers: {
         'authorization': 'Bearer '+ localStorage.Token,
       }
+    }).then(res=>{
+      console.log(res);
+      if(res.status==202)
+      this.props.history.push("/");
+      else
+      {
+        alert("doubt posted");
+        this.props.close();
+      }
     });
   
  
 this.setState({title: ''});
 this.setState({tags: []});
 this.setState({body:''});
-this.props.history.push("/practice")
+
  
   
 }

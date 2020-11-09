@@ -26,7 +26,7 @@ function top(q, x) {
 }
 //router.use(auth);
 router.get('/top:v', async function (req, res) {
-    console.log("request came with tags=", req.query.tags);
+    console.log("question request came with tags=", req.query.tags);
     no = parseInt(req.params.v);
     console.log(no);
     var q;

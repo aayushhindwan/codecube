@@ -72,14 +72,13 @@ app.use('/admin',require('./routes/question_adder_admin'));
 app.use('/status',require('./routes/status'));
 
 
-app.get('/isSignedIn',async function(req,res){;
-  console.log(req.session.email);
-  console.log(req.session.kk);
-  req.session.kk="jk";
-  if(req.session.email)
-  res.json(1);
-  else
-  res.json(0);
+app.get('/isSignedIn',async function(req,res){
+  console.log("hii");
+if(req.email)
+ res.status(200).send("Yes");
+ else
+ res.status(202).send("No");
+
 });
 app.get('/', function (req, res) {
   console.log("hii");

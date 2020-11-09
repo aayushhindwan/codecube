@@ -1,30 +1,38 @@
 const express=require('express');
 const router=express.Router();
-const user_database=require('../models/user');
 
-router.get('/',function(req,res){
-res.render("signup",{});
+const userInfoModel=require('../models/userInfoModel');
+router.post('/',async function(req,res){
+    console.log("signup request came");
+var e=req.body.email;
+var p=req.body.password;
+console.log(e);
+x= await userInfoModel.findOne({Email:e},function(obj){
+ //   console.log(obj);
+   // console.log("hii");
 });
-router.post("/signup",function(req,res){
-    var email=req.body.email;
-    var pass=req.body.pass;
+if(!x)
+{
+const k=new userInfoModel({
+    Email:req.body.email,
+    Password:req.body.password
+});
 
-    let user=new user_database({
-        email:email,
-        password:pass
-    });
-    user_database.insertMany([user],function(err){
-        if(err)
-        {
-            res.end("not_done")
-            console.log(err);
-        }
-        else 
-        {
-            console.log(email+" "+pass);
-            console.log("User signed up\n");
-            res.end("done");
-        }
-    });
+result=await k.save();
+if(result)
+{
+   
+    res.status(200).send(result._id);
+}
+else
+{
+    res.status(400).send("Error by database");
+}
+}
+else
+{
+    res.status(403).send("Email is already there");
+}
+
 });
 module.exports=router;

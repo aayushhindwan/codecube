@@ -34,6 +34,9 @@ export default class practice extends Component {
           'authorization': 'Bearer '+ localStorage.Token,
         }
       }).then((res)=>{
+        if(res.status==202)
+        this.props.history.push("/");
+          
      console.log("hiiiiiii");    
      console.log(res.data);
      this.setState({

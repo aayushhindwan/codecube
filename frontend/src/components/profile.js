@@ -12,8 +12,24 @@ class  Profile extends Component{
               Branch: "",
               GraduationYear:"",
               Interests:[],
-              show:true,
-              image:"https://homepages.cae.wisc.edu/~ece533/images/mountain.png"
+              show:false,
+              image:""
+  }
+  updateProfile=()=>{
+    
+    axios.post('http://localhost:3001/profile/user',{
+      FullName: this.state.FullName,
+      CodeChefProfile:  this.state.CodeChefProfile,
+      CodeForceProfile: this.state.CodeForceProfile,
+      Branch: this.state.Branch,
+      GraduationYear:this.state.GraduationYear,
+      Interests:this.state.Interests,
+      ImageUrl:this.state.image,
+    },{
+      headers: {
+        'authorization': 'Bearer '+ localStorage.Token,
+      }
+    }).then(res=>{console.log(res)});
   }
   componentDidMount()
   {
@@ -22,6 +38,8 @@ class  Profile extends Component{
               'authorization': 'Bearer '+ localStorage.Token,
             }
           }).then((res)=>{
+            if(res.status==202)
+      this.props.history.push("/");
             console.log(res);
             this.setState({
               FullName: res.data.FullName,
@@ -30,7 +48,7 @@ class  Profile extends Component{
               Branch: res.data.Branch,
               GraduationYear:res.data.GraduationYear,
               Interests:res.data.Interests,
-              image:res.data.imageUrl,
+              image:res.data.ImageUrl,
           })
           });
          
@@ -47,13 +65,13 @@ class  Profile extends Component{
 </div>
 </div>
   <MyVerticallyCenteredModalProfile
-  changeName={(f)=>{this.setState({FullName:f})}}
-  changeBranch={(f)=>{this.setState({Branch:f})}}
-  changeProfile1={(f)=>{this.setState({CodeChefProfile:f})}}
-  changeProfile2={(f)=>{this.setState({CodeForceProfile:f})}}
-  changeYear={(f)=>{this.setState({GraduationYear:f})}}
-  changeImage={(f)=>{this.setState({image:f})}}
-
+  changeName={(f)=>{if(f)this.setState({FullName:f})}}
+  changeBranch={(f)=>{if(f)this.setState({Branch:f})}}
+  changeProfile1={(f)=>{if(f)this.setState({CodeChefProfile:f})}}
+  changeProfile2={(f)=>{if(f)this.setState({CodeForceProfile:f})}}
+  changeYear={(f)=>{if(f)this.setState({GraduationYear:f})}}
+  changeImage={(f)=>{if(f)this.setState({image:f});console.log("image changed")}}
+  submit={this.updateProfile}
   show={this.state.show}
   onHide={()=>{
     this.setState({show:false});

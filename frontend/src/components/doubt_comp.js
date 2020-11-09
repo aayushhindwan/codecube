@@ -12,6 +12,7 @@ import { Redirect } from 'react-router';
 import {Link} from "react-router-dom";
 import port from '../port.js'
 import domain from '../domain.js'
+import {  withRouter} from "react-router-dom";
 import axios from 'axios'
 export default class Doubt extends Component
 {
@@ -20,13 +21,25 @@ export default class Doubt extends Component
   
   async componentDidMount()
 {
-var y=this.state.tags;
+  axios.get(domain+':'+port+'/isSignedIn',{
+            headers: {
+              'authorization': 'Bearer '+ localStorage.Token,
+            }
+          }).then(res=>{
+if(res.status==202)
+      this.props.x();
+    else{
+      var y=this.state.tags;
+      if(this.props.tags){
 this.props.tags.map((a)=>{
   y.push(a)
-})
-
+});
+}
 this.setState({tags:y});
-console.log(this.props.tags);
+console.log(this.props.tags);}
+
+  });
+
 
 }
   
@@ -37,6 +50,8 @@ console.log(this.props.tags);
       'authorization': 'Bearer '+ localStorage.Token,
     }
   }).then(res=>{
+    if(res.status==202)
+      this.props.history.push("/");
     console.log("liked");
     window.location.reload();
    });
@@ -50,8 +65,12 @@ console.log(this.props.tags);
       headers: {
         'authorization': 'Bearer '+ localStorage.Token,
       }
+    }).then(res=>{
+      if(res.status==202)
+      this.props.history.push("/");
+      window.location.reload();
     }); 
-    window.location.reload();
+    
   }
 
 render()

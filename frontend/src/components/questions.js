@@ -14,6 +14,8 @@ componentDidMount()
       'authorization': 'Bearer '+ localStorage.Token,
     }
   }).then((res)=>{
+    if(res.status==202)
+    this.props.history.push("/");
      this.setState({Questions:res.data});
  })
 }

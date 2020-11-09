@@ -21,11 +21,12 @@ x= await user.findById(req.userId,async function(err,data){
         res.status(200).send(d);}
 });
 });
-router.post('/user/:e',async function(req,res)
+router.post('/user/',async function(req,res)
 {
     var d=req.body;
-    console.log(req.params.e);
-   y= await user.updateOne({"Email":req.params.e},d);
+    console.log("Update Request Came");
+    console.log(d);
+   y= await user.updateOne({"Email":req.email},d);
    res.send(y);
 });
 
