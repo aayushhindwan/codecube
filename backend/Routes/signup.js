@@ -23,7 +23,7 @@ result=await k.save();
 if(result)
 {
    
-    res.status(200).send(result._id);
+    res.status(200).send("signup completed");
 }
 else
 {

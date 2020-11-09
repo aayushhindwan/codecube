@@ -10,7 +10,6 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 function MyVerticallyCenteredModalForAnswer(props) {
   const [answer,changeAnswer] = useState("");
-
   return (
     <Modal
       {...props}
@@ -34,8 +33,6 @@ function MyVerticallyCenteredModalForAnswer(props) {
     </Modal>
   );
 }
-
-
 function MyVerticallyCenteredModal(props) {
   const [answer,changeAnswer] = useState("")
 
