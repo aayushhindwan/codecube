@@ -51,7 +51,7 @@ mongoose.connect(uri, {
 router = express.Router();
 app.use('/login', require('./Routes/login'));
 app.use('/signup', require('./Routes/signup'));
-//app.use(auth);
+app.use(auth);
 app.use('/', require('./Routes/homepage'));
 app.use('/doubts', require('./Routes/questions'));
 app.use('/summary', require('./Routes/summary'));
@@ -61,12 +61,9 @@ app.use('/profile', require('./Routes/profile'));
 app.use('/articles', require('./Routes/articles'));
 app.use('/question', require('./Routes/CodingQuestion'));
 app.use('/compiler', require('./Routes/Compilers'));
-
-
-//app.use('/',require('./routes/home'));
-//app.use('/signup',require('./routes/signup'));
-//app.use('/login',require('./routes/login'));
-
+app.use('/',require('./routes/home'));
+app.use('/signup',require('./routes/signup'));
+app.use('/login',require('./routes/login'));
 app.use('/logout',require('./routes/logout'));
 app.use('/practice',require('./routes/practicepage'));
 app.use('/compile',require('./routes/compiler'));

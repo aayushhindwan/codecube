@@ -26,6 +26,7 @@
     "open": "^7.1.0",
     "python": "0.0.4",
     "redis": "^3.0.2",
+    "request": "^2.88.2",
     "server-destroy": "^1.0.1",
     "wget": "0.0.1"
   }

@@ -90,16 +90,16 @@ export default class myVerticallyCenteralModalProfile extends Component {
                 
               onClick={() => {
                 props.changeName(this.state.name)
-                props.changeImage(this.state.preview)
-                props.changePublicProfile1(this.state.publicProfile1)
-                props.changePublicProfile2(this.state.publicProfile2)
-                props.change_studentBranch(this.state.studentBranch)
-                props.change_studentYear(this.state.studentYear)
-                props.changeImage(this.state.preview)
+                /*props.changeImage(this.state.preview)*/
+                props.changeProfile1(this.state.publicProfile1)
+                props.changeProfile2(this.state.publicProfile2)
+                props.changeBranch(this.state.studentBranch)
+                props.changeYear(this.state.studentYear)
+               props.changeImage(this.state.preview)
                 props.onHide()
 
               }}
-            >Changes</Button>
+            >Submit</Button>
               <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
           </Modal>
