@@ -7,6 +7,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Doubt from './doubt_comp.js'
 import axios from "axios";
+import domain from '../domain.js'
 import { Link } from 'react-router-dom';
 import {  useHistory,withRouter} from "react-router-dom";
 import parse from 'html-react-parser';
@@ -52,7 +53,7 @@ tagsclick=(p)=>
 
       console.log("hello",p);
       this.setState({t:p});
-    axios.get('http://localhost:3001/question/top80/?tags='+p)
+    axios.get(domain+'/question/top80/?tags='+p)
       .then(res => {
         if(res.status==202)
       this.props.history.push("/");
@@ -64,7 +65,7 @@ tagsclick=(p)=>
 async componentDidMount()
 {
   console.log("hiiw");
- var q= await axios.get('http://localhost:3001/doubts/top80', {
+ var q= await axios.get(domain+'/doubts/top80', {
   headers: {
     'authorization': 'Bearer '+ localStorage.Token,
   }

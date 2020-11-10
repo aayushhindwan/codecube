@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';import domain from '../domain.js'
 export default class questions extends Component {
     static propTypes = {
         prop: PropTypes
@@ -9,7 +9,7 @@ export default class questions extends Component {
     state={Questions:[]};
 componentDidMount()
 {
- axios.get('http://localhost:3001/question/top80',{
+ axios.get(domain+'/question/top80',{
     headers: {
       'authorization': 'Bearer '+ localStorage.Token,
     }

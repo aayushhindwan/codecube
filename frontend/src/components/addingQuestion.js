@@ -3,7 +3,7 @@ import '../assests/scss/addingQuestion.scss'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Button } from 'react-bootstrap';
-import axios from 'axios';
+import axios from 'axios';import domain from '../domain.js'
 var tg=[];
 export default class AddingQuestion extends Component {
     state={
@@ -11,7 +11,7 @@ export default class AddingQuestion extends Component {
     }
     submitQuestion=()=>
     {
-        axios.post('http://localhost:3001/question',{
+        axios.post(domain+'/question',{
             QuestionTitle:this.state.QuestionTitle,
             QuestionBody:this.state.QuestionBody,
             Tags:tg,

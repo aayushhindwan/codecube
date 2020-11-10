@@ -12,16 +12,13 @@ export default class signup extends Component {
             
                <div className="form-data">
                    <h4>Email</h4>
-                   <input value={this.props.email} onChange={this.props.emailChange} type="text" />
+                   <input value={this.props.email} onChange={this.props.emailChange} type="email" />
                </div>
                <div className="form-data">
                    <h4>Password</h4>
                    <input value={this.props.password} onChange={this.props.passwordChange} type="password" />
                </div>
-               <div className="form-data">
-                   <h4>Re-enter Password</h4>
-                   <input type="password" />
-               </div>
+              
             </div>
         )
     }

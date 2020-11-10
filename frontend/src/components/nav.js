@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {Navbar,Nav,NavDropdown,Form, Button,} from 'react-bootstrap'
 import '../assests/scss/navBar.css'
 import styled from 'styled-components'
-import axios from 'axios';
+import axios from 'axios';import domain from '../domain.js'
 const Styles = styled.div`
 .navbar{
     color : white;
@@ -28,7 +28,7 @@ const NavBar = (props) => {
  
   useEffect(()=>
   {  
-     axios.get('http://localhost:3001/isSignedIn',{
+     axios.get(domain+'/isSignedIn',{
       headers: {
         'authorization': 'Bearer '+ localStorage.Token,
       }
@@ -42,7 +42,7 @@ const NavBar = (props) => {
     return (
         <Styles>
      <Navbar bg="dark" expand="lg">
-  <Navbar.Brand href="#home">Coding Cube</Navbar.Brand>
+  <Navbar.Brand href="/home">Coding Cube</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ml-5 navbar">

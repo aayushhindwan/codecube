@@ -24,7 +24,7 @@ x= await user.findById(req.userId,async function(err,data){
 router.post('/user/',async function(req,res)
 {
     var d=req.body;
-    console.log("Update Request Came");
+    console.log("Update Request")
     console.log(d);
    y= await user.updateOne({"Email":req.email},d);
    res.send(y);

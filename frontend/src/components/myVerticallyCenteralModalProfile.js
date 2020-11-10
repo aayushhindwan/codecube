@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Avatar from 'react-avatar-edit'
 import {Button,ListGroup,Modal} from 'react-bootstrap'
-
+import domain from '../domain.js'
 export default class myVerticallyCenteralModalProfile extends Component {
    constructor(props){
        super(props);
@@ -43,28 +43,28 @@ export default class myVerticallyCenteralModalProfile extends Component {
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                Change Profile
+                Update Profile
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
              <form className="profile-changes">
-               <h1>Username</h1>
+               <h1>Full Name</h1>
               <input type = "text" value = {this.state.name} placeholder={props.name} onChange={(e)=> {
                          this.setState({name:e.target.value})
               }}/> <br /> 
-               <h1>BRANCH </h1>
+               <h1>Branch </h1>
               <input type = "text" value = {this.state.studentBranch} placeholder={props.studentBranch} onChange={(e)=> {
                          this.setState({studentBranch:e.target.value})
               }}/> <br /> 
-               <h1>YEAR</h1>
+               <h1>Graduation Year</h1>
               <input type = "text" value = {this.state.studentYear} placeholder={props.studentYear} onChange={(e)=> {
                          this.setState({studentYear:e.target.value})
               }}/> <br /> 
-               <h1>PUBLIC PROFILE ID_1</h1>
+               <h1>CodeChef Profile </h1>
               <input type = "text" value = {this.state.publicProfile1} placeholder={props.publicProfile1} onChange={(e)=> {
                          this.setState({publicProfile1:e.target.value})
               }}/> <br /> 
-               <h1>PUBLIC PROFILE ID_2</h1>
+               <h1>Codeforce Profile </h1>
               <input type = "text" value = {this.state.publicProfile2} placeholder={props.publicProfile2} onChange={(e)=> {
                          this.setState({publicProfile2:e.target.value})
               }}/> <br /> 

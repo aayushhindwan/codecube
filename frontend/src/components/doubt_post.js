@@ -7,7 +7,7 @@ import  { Component } from 'react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { Link, useHistory,withRouter} from "react-router-dom";
+import { Link, useHistory,withRouter} from "react-router-dom";import domain from '../domain.js'
 var g=[];
 class Post_Doubt extends Component {
 
@@ -21,7 +21,7 @@ state={
 SubmitDoubt=(event)=>
 {
   console.log(g);
-  const response =  axios.post('http://localhost:3001/doubts/postQuestion', { "QuestionTitle": this.state.title,
+  const response =  axios.post(domain+'/doubts/postQuestion', { "QuestionTitle": this.state.title,
     "QuestionTags": g,
     "QuestionBody": this.state.body,},{
       headers: {

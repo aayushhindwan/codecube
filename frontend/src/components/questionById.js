@@ -8,6 +8,7 @@ import {Button,Modal} from 'react-bootstrap'
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import domain from '../domain.js'
+
 export default class questions extends Component {
     static propTypes = {
         prop: PropTypes
@@ -25,7 +26,7 @@ export default class questions extends Component {
 async componentDidMount()
 {
 
-axios.get(domain+":3001/answer/getanswer/"+this.props.match.params.id,{
+axios.get(domain+"/answer/getanswer/"+this.props.match.params.id,{
   headers: {
     'authorization': 'Bearer '+ localStorage.Token,
   }
@@ -44,7 +45,7 @@ axios.get(domain+":3001/answer/getanswer/"+this.props.match.params.id,{
       SubmitAnswer=(event)=>
 {
    if(this.state.text){
-    const response =  axios.post(domain+':3001/answer/postanswer/'+this.props.match.params.id, { Body: this.state.text,},{
+    const response =  axios.post(domain+'/answer/postanswer/'+this.props.match.params.id, { Body: this.state.text,},{
       headers: {
         'authorization': 'Bearer '+ localStorage.Token,
       }
@@ -72,10 +73,10 @@ this.setState({text: ""});
                         {this.state.QuestionTitle}
                         </div>
                         <div className="description">
-                        {this.state.QuestionBody}
+                      <div   dangerouslySetInnerHTML={ { __html: this.state.QuestionBody} }></div>
                         </div>
                         <div className="answerPost">
-                            Write Your Answer {this.props.match.params.id}
+                           <h3> Write Your Answer </h3>
                       <CKEditor 
           editor={ClassicEditor}
           data = {this.state.text}
@@ -94,7 +95,8 @@ this.setState({text: ""});
                        this.state.Answer.map((a,i)=>{
                            return(
                        <div>
-                            <Answer body={a.body} indexValue={i+1}/>
+                             
+                            <Answer postedBy={a.postedBy} body={a.body} indexValue={i+1}/>
                             </div>
                             );
 

@@ -59,7 +59,7 @@ router.post('/postQuestion', async function (req, res) {
     var q = new questionModel({
         QuestionBody: req.body.QuestionBody,
         QuestionTitle: req.body.QuestionTitle,
-        QuestionUser: req.userId,
+        QuestionUser: req.username,
         UpVote: 10,
         DownVote: 0,
         Tags: req.body.QuestionTags,

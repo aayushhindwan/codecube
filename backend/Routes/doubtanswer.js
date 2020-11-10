@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const auth = require('../utilities/auth.js')
+
 //router.use(auth);
 const answerModel = require('../models/doubtAnswerModel');
 router.get('/aaytu', function (req, res) {
@@ -16,7 +17,7 @@ router.post('/postanswer/:id', async function (req, res) {
     */
   p = await answerModel.updateOne(
     { QuestionId: req.params.id },
-    { $push: { Answers: { body: req.body.Body,postedBy: req.userId } } }
+    { $push: { Answers: { body: req.body.Body,postedBy: req.username } } }
   );
   //console.log("answer altas response is",p);
   console.log("heloo posted ")

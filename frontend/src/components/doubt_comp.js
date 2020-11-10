@@ -21,7 +21,7 @@ export default class Doubt extends Component
   
   async componentDidMount()
 {
-  axios.get(domain+':'+port+'/isSignedIn',{
+  axios.get(domain+'/isSignedIn',{
             headers: {
               'authorization': 'Bearer '+ localStorage.Token,
             }
@@ -45,7 +45,7 @@ console.log(this.props.tags);}
   
   handleLike=(event)=>
   {
-   axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:1},{
+   axios.post(domain+'/likes',{id:this.props._id,inc:1},{
     headers: {
       'authorization': 'Bearer '+ localStorage.Token,
     }
@@ -61,7 +61,7 @@ console.log(this.props.tags);}
   handleDislike=(event)=>
   {
     this.setState({y:this.state.y-1});
-    axios.post(domain+':'+port+'/likes',{id:this.props._id,inc:-1},{
+    axios.post(domain+'/likes',{id:this.props._id,inc:-1},{
       headers: {
         'authorization': 'Bearer '+ localStorage.Token,
       }

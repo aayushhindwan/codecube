@@ -8,7 +8,7 @@ import Post_Doubt from './doubt_post.js'
 import Doubt from './doubt_comp.js'
 import {  useHistory,withRouter} from "react-router-dom";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';import domain from '../domain.js'
 function MyVerticallyCenteredModalForAnswer(props) {
   const [answer,changeAnswer] = useState("");
   return (
@@ -69,9 +69,12 @@ class Doubts extends Component{
       modalShow:false,
       modalShowAns:false,
     }
+    tagsclick=(tg)=>{
+     console.log(tg);
+    }
     async componentDidMount()
     {
-     var q= await axios.get('http://localhost:3001/doubts/top80', {
+     var q= await axios.get(domain+'/doubts/top80', {
       headers: {
         'authorization': 'Bearer '+ localStorage.Token,
       }

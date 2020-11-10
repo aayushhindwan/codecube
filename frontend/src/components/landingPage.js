@@ -7,7 +7,7 @@ import SignIn from './login'
 import '../assests/scss/landingPage.scss'
 import signup from './signup';
 import axios from 'axios';
-import {  useHistory,withRouter} from "react-router-dom";
+import {  useHistory,withRouter} from "react-router-dom";import domain from '../domain.js'
 function MyVerticallyCenteredModal(props) {
     const [answer,changeAnswer] = useState("");
   
@@ -24,6 +24,7 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        
           <Signup passwordChange={props.passwordChange} emailChange={props.emailChange} email={props.email} password={props.password}/>
           </Modal.Body>
           <div className="signIn-redirect"
@@ -101,7 +102,7 @@ function LandingPage (props) {
     const [password,setPassword]=useState("");
     useEffect(()=>
     {  
-       axios.get('http://localhost:3001/isSignedIn',{
+       axios.get(domain+'3001/isSignedIn',{
         headers: {
           'authorization': 'Bearer '+ localStorage.Token,
         }
@@ -117,7 +118,7 @@ function LandingPage (props) {
         {
           //console.log(email,password);
 
-          axios.post('http://localhost:3001/signup',{
+          axios.post(domain+'/signup',{
             "email":email,
             "password":password,
           }).then((res)=>{
@@ -138,7 +139,7 @@ function LandingPage (props) {
         const signIN=()=>
         {
           console.log("signin");
-          axios.post('http://localhost:3001/login',{
+          axios.post(domain+'/login',{
             "email":email,
             "password":password,
           }).then((res)=>{

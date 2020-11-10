@@ -8,13 +8,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import  { Component } from 'react'
 import { Redirect } from 'react-router';
 import {  useHistory,withRouter} from "react-router-dom";
+import domain from '../domain.js';
 export default class Doubt extends Component
 {
   state={id:'',answers:[]}
   componentDidMount()
   {
 
-axios.get('http://localhost:3001/getanswer/this.props.match.params.id')
+axios.get(domain+'getanswer/this.props.match.params.id')
       .then(res => {
         if(res.status==202)
       this.props.history.push("/");

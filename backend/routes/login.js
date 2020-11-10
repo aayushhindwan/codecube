@@ -7,15 +7,15 @@ const session = require('express-session')
 var cors = require('cors');
 router.use(cors({
     origin: [
-      'http://localhost:3000',
+      'http://192.168.1.6:3000',
       
     ],
     credentials: true,
     exposedHeaders: ['set-cookie']
   }));
-router.use(cors({origin: "http://localhost:3000",
+router.use(cors({origin: "http://192.168.1.6:3000",
 credentials: true}))
-const redis = require('redis')
+/*const redis = require('redis')
 
 const redisStore=require('connect-redis')(session);
 const client  = redis.createClient();
@@ -25,10 +25,10 @@ secret: 'ssshhhhh',
 store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl : 260}),
 saveUninitialized: false,
 resave: false
-}));
+}));*/
 router.post('/', async function(req,res){
     
-    console.log("aaya");
+    console.log("login request");
     var e=req.body.email;
     var p=req.body.password;
     console.log(e);
@@ -41,7 +41,7 @@ router.post('/', async function(req,res){
      }
      else{
     console.log(obj);
-    console.log("hii:");
+    console.log("email password found");
      }
 });
 if(x)

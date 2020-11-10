@@ -1,1 +1,1 @@
-module.exports="http://localhost"
+module.exports="http://192.168.1.6:3001"

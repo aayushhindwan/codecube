@@ -4,6 +4,7 @@ import '../assests/scss/profile.scss'
 import Avatar from 'react-avatar-edit'
 import MyVerticallyCenteredModalProfile from './myVerticallyCenteralModalProfile';
 import axios from 'axios';
+import domain from '../domain.js'
 class  Profile extends Component{
   state={
               FullName: "",
@@ -17,7 +18,7 @@ class  Profile extends Component{
   }
   updateProfile=()=>{
     
-    axios.post('http://localhost:3001/profile/user',{
+    axios.post(domain+'/profile/user',{
       FullName: this.state.FullName,
       CodeChefProfile:  this.state.CodeChefProfile,
       CodeForceProfile: this.state.CodeForceProfile,
@@ -33,7 +34,7 @@ class  Profile extends Component{
   }
   componentDidMount()
   {
-          axios.get('http://localhost:3001/profile/user',{
+          axios.get(domain+'/profile/user',{
             headers: {
               'authorization': 'Bearer '+ localStorage.Token,
             }

@@ -2,16 +2,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
-const redis = require('redis')
+//const redis = require('redis')
 
 const auth = require('./utilities/auth.js')
-const redisStore=require('connect-redis')(session);
-const client  = redis.createClient();
+//const redisStore=require('connect-redis')(session);
+//const client  = redis.createClient();
 app = express();
 var cors = require('cors')
 app.use(cors({
   origin: [
-    'http://localhost:3000',
+    'http://192.168.1.6:3000',
     
   ],
   credentials: true,
@@ -28,13 +28,13 @@ app.use(express.static('public'));
 const mongoose = require('mongoose')
 //app.use(bodyParser.urlencoded({ extented: true }));
 app.use(bodyParser.json());
-app.use(session({
+/*app.use(session({
 secret: 'ssshhhhh',
 // create new redis store.
 store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl : 260}),
 saveUninitialized: false,
 resave: false
-}));
+}));*/
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://codecubeuser:codecode@cluster0.qe9uy.mongodb.net/codecubeDB?retryWrites=true&w=majority";
 const atlasclient = new MongoClient(uri, { useUnifiedTopology: true });
@@ -48,7 +48,7 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-router = express.Router();
+router = express.Router();app.use(cors());
 app.use('/login', require('./Routes/login'));
 app.use('/signup', require('./Routes/signup'));
 app.use(auth);

@@ -12,8 +12,10 @@ token=bearer[1];
    {   console.log("hello");
      res.status(202).send("No sign in");}
     else
-    { req.userId=data.payload.id;
+    { const e=data.payload.email;
+      req.userId=data.payload.id;
       req.email=data.payload.email;
+      req.username=e.substring(0,e.length-11);
       console.log("hii",req.userId);
       console.log(data);next();
     }
