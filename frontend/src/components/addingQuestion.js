@@ -7,7 +7,7 @@ import axios from 'axios';import domain from '../domain.js'
 var tg=[];
 export default class AddingQuestion extends Component {
     state={
-        QuestionTitle:"a",QuestionBody:"a", Editorial:"a"
+        QuestionTitle:"Title",QuestionBody:"Body", Editorial:"write...."
     }
     submitQuestion=()=>
     {
@@ -16,9 +16,14 @@ export default class AddingQuestion extends Component {
             QuestionBody:this.state.QuestionBody,
             Tags:tg,
             Editorial:this.state.Editorial,
+          },{
+            headers: {
+              'authorization': 'Bearer '+ localStorage.Token,
+            }
           }).then((res)=>{
             if(res.status==200)
             {
+                this.setState({QuestionTitle:"",QuestionBody:"", Editorial:""});
               alert(res.data);
             }
             else

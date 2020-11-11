@@ -6,7 +6,7 @@ import 'react-image-crop/lib/ReactCrop.scss';
 import ReactCrop from 'react-image-crop';
 import Dropzone from 'react-dropzone'
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
 import domain from '../domain.js'
 const imageMaxSize = 1000000000 // bytes
 const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg, image/gif'
@@ -29,7 +29,7 @@ export default class practice extends Component {
  
     componentDidMount(){
 
-     Axios.get(domain+'/question/'+this.props.match.params.id,{
+     axios.get(domain+'/question/'+this.props.match.params.id,{
         headers: {
           'authorization': 'Bearer '+ localStorage.Token,
         }

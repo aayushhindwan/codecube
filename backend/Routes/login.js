@@ -7,13 +7,13 @@ const session = require('express-session')
 var cors = require('cors');
 router.use(cors({
     origin: [
-      'http://192.168.1.6:3000',
+      'http://localhost:3000',
       
     ],
     credentials: true,
     exposedHeaders: ['set-cookie']
   }));
-router.use(cors({origin: "http://192.168.1.6:3000",
+router.use(cors({origin: "http://localhost:3000",
 credentials: true}))
 /*const redis = require('redis')
 
@@ -32,22 +32,21 @@ router.post('/', async function(req,res){
     var e=req.body.email;
     var p=req.body.password;
     console.log(e);
-    var x;
+    var x;var y=0;
     
  x=  await userInfoModel.findOne({Email:e,Password:p},function(err,obj){
      if(err)
      {
-      console.log(err);
+      console.log(err);res.status(400).send("error");
      }
      else{
-    console.log(obj);
-    console.log("email password found");
-     }
-});
-if(x)
+    console.log("no error in finding");
+	     
+	   //  console.log(obj);y=1;
+if(obj)
 {  console.log(e);
     //req.session.email="aayush";
-     var payload={email:e,id:x._id};
+     var payload={email:e,id:obj._id};
         jwt.sign({payload},'nitp',(err,token)=>{
 if(!err)
 res.status(200).send(token);
@@ -57,6 +56,9 @@ res.status(400).send("error");
 }
 else
     res.status(400).send("email/password doesn't matched");
+   // console.log("email password found",x,y);
+     }
+});
 
 });
 router.get('/aaytu',function(req,res){

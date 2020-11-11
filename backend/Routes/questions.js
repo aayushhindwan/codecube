@@ -36,7 +36,7 @@ router.get('/top:v', async function (req, res) {
         console.log(q);
     }
     else {
-        q = await questionModel.find().sort().limit(no);
+        q = await questionModel.find().sort({ createdAt:-1 }).limit(no);
 
     }
     //console.log(q);

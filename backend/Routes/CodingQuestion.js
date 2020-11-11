@@ -6,7 +6,8 @@ var CodingQModel=require('../models/codingQuestionModel');
 //router.use(fileUpload())
 //router.use(FormData());
 router.post('/',function(req,res){
-    console.log(req.body);
+    console.log("coding question post request");
+    //console.log(req.body);
 x=new CodingQModel({
 QuestionTitle:req.body.QuestionTitle,
 QuestionBody:req.body.QuestionBody,
@@ -18,8 +19,9 @@ Author:"admin",
 Flag:0,
 Comments:[],
 });
+
 x.save();
-res.status(200).send("hello");
+res.status(200).send("Coding Question Posted");
 })
 router.get('/top:v',async function(req,res){
     console.log("fkf");
