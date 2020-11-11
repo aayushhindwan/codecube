@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const questionModel = require('../models/questionModel');
 const answerModel = require('../models/doubtAnswerModel');
+const userInfoModel=require('../models/userInfoModel');
 const likeModel = require('../models/UpDown.js');
 const auth = require('../utilities/auth.js');
 const domain = require('../domain.js')
@@ -55,17 +56,23 @@ router.get('/aaytu', async function (req, res) {
 router.post('/postQuestion', async function (req, res) {
   //  console.log(req.body);
    // console.log(req.userId);
-    console.log("post request came");
+    console.log("post request came",req.userId);var userImage;
+   await userInfoModel.findById(req.userId,function(err,data){
+console.log(data);
+userImage=data.ImageUrl; 
+
+   });
     var q = new questionModel({
         QuestionBody: req.body.QuestionBody,
         QuestionTitle: req.body.QuestionTitle,
         QuestionUser: req.username,
+        QuestionUserImage:userImage,
         UpVote: 10,
         DownVote: 0,
         Tags: req.body.QuestionTags,
     });
 
-    //console.log(q);
+    console.log(q);
 
     const atlasres = await q.save();
     console.log("question model posted");

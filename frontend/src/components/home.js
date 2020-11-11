@@ -94,7 +94,7 @@ render()
 <Doubt x={()=>{
   
   this.props.history.push("/");
-}} onChildClick={this.tagsclick} title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} user={p.QuestionUser} tags={p.Tags} />
+}} onChildClick={this.tagsclick} image={p.QuestionUserImage} title={p.QuestionTitle} body={p.QuestionBody} _id={p._id} UpVote={p.UpVote} DownVote={p.DownVote} time={p.createdAt} user={p.QuestionUser} tags={p.Tags} />
     );
    }
    )

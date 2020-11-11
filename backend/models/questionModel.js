@@ -22,6 +22,11 @@ QuestionUser:{
     type:String,
     required:true
 },
+QuestionUserImage:
+{
+    type:String,
+    default:"https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
+},
 UpVote:{
     type:Number,
     required:true

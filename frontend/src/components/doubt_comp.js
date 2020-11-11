@@ -80,7 +80,7 @@ return (
       
    <div className="posts">
                        <div className="authorId">
-                            <img src="https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg" alt="no-img" />
+                            <img src={this.props.image} alt="no-img" />
                             <div className="userName"> 
 <div>{this.props.user}</div>
 <div className="postedOn">postedOn. {this.props.time}</div>
