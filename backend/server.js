@@ -5,6 +5,7 @@ const session = require('express-session')
 //const redis = require('redis')
 
 const auth = require('./utilities/auth.js')
+const dburi= require('./dburi.js')
 //const redisStore=require('connect-redis')(session);
 //const client  = redis.createClient();
 app = express();
@@ -36,7 +37,7 @@ saveUninitialized: false,
 resave: false
 }));*/
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://codecubeuser:codecode@cluster0.qe9uy.mongodb.net/codecubeDB?retryWrites=true&w=majority";
+const uri = dburi;
 const atlasclient = new MongoClient(uri, { useUnifiedTopology: true });
 atlasclient.connect(err => {
   const collection = atlasclient.db("test").collection("devices");

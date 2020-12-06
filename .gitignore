@@ -3,3 +3,4 @@ redis-6.0.5
 build
 .env
 .DS_Store
+dburi.js
