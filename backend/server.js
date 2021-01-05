@@ -1,7 +1,6 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const session = require('express-session')
 //const redis = require('redis')
 
 const auth = require('./utilities/auth.js')
@@ -12,7 +11,7 @@ app = express();
 var cors = require('cors')
 app.use(cors({
   origin: [
-    'http://192.168.1.6:3000',
+    'http://localhost:3000',
     
   ],
   credentials: true,

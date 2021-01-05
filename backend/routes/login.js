@@ -7,13 +7,13 @@ const session = require('express-session')
 var cors = require('cors');
 router.use(cors({
     origin: [
-      'http://192.168.1.6:3000',
+      'http://localhost:3000',
       
     ],
     credentials: true,
     exposedHeaders: ['set-cookie']
   }));
-router.use(cors({origin: "http://192.168.1.6:3000",
+router.use(cors({origin: "http://localhost:3000",
 credentials: true}))
 /*const redis = require('redis')
 

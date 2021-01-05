@@ -21,7 +21,7 @@ function App() {
   console.log(store);
 
   return (
-    <div className="App">
+    <div>
       <NavBar />
       <Switch>
           <Route exact path='/' component={LandingPage}/>

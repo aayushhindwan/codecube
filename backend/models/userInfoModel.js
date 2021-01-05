@@ -40,7 +40,20 @@ CodeForceProfile:
     type:String,
     required:false
 },
-Interests:
+GithubProfile:
+{
+    type:String,
+    required:false
+},
+Skills:
+{
+    type:[{
+        type:String,
+        required:false
+    }],
+    required:false
+},
+Projects:
 {
     type:[{
         type:String,
@@ -48,6 +61,24 @@ Interests:
     }],
     required:false
 }
-
+,
+WorkExperience:
+{
+    type:[{
+        title:String,
+        Description:String,
+    }],
+    required:false
+}
+,
+Achievements:
+{
+    type:[{
+        type:String,
+        required:false
+    }],
+    required:false
+}
 });
+
 module.exports= mongoose.model("userinfo",userInfoSchema);
