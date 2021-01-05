@@ -1,0 +1,112 @@
+.main_div{
+    width: 50%;
+    margin-left : 25%;
+    margin-top : 2%;
+    .announcement{
+        height: 20vh;
+        width:100%;
+        background-color: white;
+    }
+    .posts{
+        margin-top: 3%;
+        height:auto;
+        width:100%;
+        background-color: white;
+        border-radius: 2px;
+        padding-top : 1px;
+        padding-left: 5px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        
+         .authorId{
+          height: auto;
+            width: 90%;
+             margin-top: 2%;
+             margin-left: 2%;
+             display: flex;
+             flex-direction: row;
+             .userName{
+                 display: flex;
+                 flex-direction: row;
+
+                 .postedOn{
+                     font-size: 10px;
+                     font-weight: normal;
+                     margin-top: 10px;
+                 }
+             }
+
+        img{
+            border-radius: 50%;
+            width :40px;
+            border: 1px solid #555;
+           
+        }
+        div{
+            margin-left: 5px;
+            color:black;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        }
+
+        .postQuestions{
+            margin-left: 2%;
+            margin-top: 2%;
+            text-align: left;
+            font-size: 90%;
+            font-weight: bolder;
+        }
+        .answerPost{
+            margin-left: 2%;
+            margin-top: 2%;
+            text-align: left;
+            font-size: 90%;
+
+        }
+        .answerBtn{
+            margin-left: 2%;
+            text-align: left;
+            margin-top:2%;
+            display: flex;
+            flex-direction: row;
+            i{
+                font-size:20px;
+                margin-left:10px;
+                color:gray
+            }
+            :hover{
+                color:blue
+            }
+            
+            :focus{
+                color:green
+            }
+        }
+    }
+}
+
+$breakpoint-tablet: 610px;
+
+// // / Small devices (landscape phones, 576px and up)
+@media (max-width: $breakpoint-tablet) { 
+  .main_div{
+      margin-left: 0%;
+      width: 100%;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+//  /
+
+// // Large devices (desktops, 992px and up)
+// @media (min-width: 992px) { 
+//     .authorId img{
+//         width : 7%
+//    }
+
+// }
+
+// Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) { ... }
